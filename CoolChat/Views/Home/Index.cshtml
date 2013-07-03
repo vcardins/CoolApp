@@ -1,4 +1,4 @@
-﻿@model List<CoolChat.Models.Chats.ChatUser>
+﻿@model CoolChat.Models.HomeViewModel
 
 <script type="text/javascript" src="~/Scripts/libs/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="~/Scripts/libs/json2.min.js"></script>
@@ -36,21 +36,10 @@
 
 <body>
     <div id="main_container">
-        <ul>
-        @foreach (var user in Model)
-        {
-            <li><a href="#" data-username="@user.Username" data-action="chat">Chat With @user.DisplayName</a></li>
-        }
-        </ul>
-{
-    <h2>CoolChat</h2>
-    <div>
-        @Html.DropDownListFor(c => c.AccountName, new List<SelectListItem> { new SelectListItem {Selected = false, Text = "maor", Value = "maor"}, new SelectListItem {Selected = false, Text = "janedoe", Value = "janedoe"}, new SelectListItem {Selected = false, Text = "babydoe", Value = "babydoe"}})
+        @Html.DropDownListFor(c => c.ChatUser.Username, Model.ListChatUsers)
         <input type="submit"  value="Login" />
     </div>
-}
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>     
     <script>window.jQuery || document.write('<script src="/Scripts/libs/jquery-1.9.1.min.js"><\/script>')</script>
     <script type="text/javascript" src="/Scripts/custom/chat.js"></script>     
 </body>
-</html>

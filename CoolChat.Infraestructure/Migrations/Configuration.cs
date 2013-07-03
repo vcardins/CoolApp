@@ -1,3 +1,4 @@
+using CoolChat.Core.Models;
 using CoolChat.Infraestructure.Data;
 using CoolChat.Infraestructure.Seeders;
 

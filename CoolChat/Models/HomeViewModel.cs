@@ -1,11 +1,14 @@
-﻿namespace CoolChat.Models
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using CoolChat.Models.Chats;
+
+namespace CoolChat.Models
 {
     public class HomeViewModel
     {
-        
-        //public IEnumerable<Article> Articles { get; set; }
 
-        //public IEnumerable<Banner> Banners { get; set; }
+        public ChatUser ChatUser { get; set; }
+        public List<SelectListItem> ListChatUsers { get; set; }
 
     }
 }

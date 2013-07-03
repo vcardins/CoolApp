@@ -1,4 +1,4 @@
-﻿@model CoolChat.Models.AccountModel
+﻿@model CoolChat.Models.ChatViewModel
 
 @{
     ViewBag.Title = "title";
@@ -34,25 +34,16 @@
 
 <body>
     <div id="main_container">
-        
-        @if(Model.AccountName == "maor")
-        {
-            <label>Hello Maor</label> <br/><br/>
-            <a href="#" data-username="janedoe" data-action="chat">Chat With Jane Doe</a> <br />
-            <a href="#" data-username="babydoe" data-action="chat">Chat With Baby Doe</a>
-        }
-        else if (Model.AccountName == "janedoe")
-        {
-            <label>Hello Jane Doe</label> <br/><br/>
-            <a href="#" data-username="maor" data-action="chat">Chat With Maor</a> <br />
-            <a href="#" data-username="babydoe" data-action="chat">Chat With Baby Doe</a>
-        }
-        else if (Model.AccountName == "babydoe")
-        {
-            <label>Hello Baby Doe</label> <br/><br/>
-            <a href="#" data-username="janedoe" data-action="chat">Chat With Jane Doe</a> <br />
-            <a href="#" data-username="maor" data-action="chat">Chat With Maor</a>
-        }
+        <label>Hello @Model.ChatUser.Username</label>
+        <ul>
+            @foreach (var user in Model.ListChatUsers.ChatUsers)
+            {
+                if(user.Username != Model.ChatUser.Username)
+                {
+                    <li><a href="#" data-username="@user.Username" data-action="chat">Chat With @user.DisplayName</a></li>
+                }
+            }
+        </ul>
         
         <!-- YOUR BODY HERE -->
 
