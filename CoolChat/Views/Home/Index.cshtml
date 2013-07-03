@@ -1,9 +1,47 @@
-﻿@model CoolChat.Models.AccountModel
+﻿@model List<CoolChat.Models.Chats.ChatUser>
 
 <script type="text/javascript" src="~/Scripts/libs/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="~/Scripts/libs/json2.min.js"></script>
+@{
+    ViewBag.Title = "title";
+}
 
-@using(Html.BeginForm("Login","Home", FormMethod.Post))
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="csrf-param" content="__RequestVerificationToken">
+    <meta name="csrf-token" content="@Html.AntiForgeryToken()">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
+        
+    <link type="text/css" rel="stylesheet" media="all" href="/Content/css/chat.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="/Content/css/screen.css" />
+
+    <script type="text/javascript" src="/Scripts/libs/modernizr-2.6.2-respond-1.1.0.min.js"></script>        
+
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div id="main_container">
+        <ul>
+        @foreach (var user in Model)
+        {
+            <li><a href="#" data-username="@user.Username" data-action="chat">Chat With @user.DisplayName</a></li>
+        }
+        </ul>
 {
     <h2>CoolChat</h2>
     <div>
@@ -11,3 +49,8 @@
         <input type="submit"  value="Login" />
     </div>
 }
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>     
+    <script>window.jQuery || document.write('<script src="/Scripts/libs/jquery-1.9.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/Scripts/custom/chat.js"></script>     
+</body>
+</html>
