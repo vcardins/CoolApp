@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="CoolChat.MvcApplication" Language="C#" %>
+<%@ Application Inherits="CoolChat.Application.Lifecycle.MvcApplication" Language="C#" %>

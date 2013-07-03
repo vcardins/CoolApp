@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model List<CoolChat.Models.Chats.ChatUser>
 
 @{
     ViewBag.Title = "title";
@@ -34,11 +34,12 @@
 
 <body>
     <div id="main_container">
-
-        <a href="#" data-username="janedoe" data-action="chat">Chat With Jane Doe</a>
-        <a href="#" data-username="babydoe" data-action="chat">Chat With Baby Doe</a>
-        <!-- YOUR BODY HERE -->
-
+        <ul>
+        @foreach (var user in Model)
+        {
+            <li><a href="#" data-username="@user.Username" data-action="chat">Chat With @user.DisplayName</a></li>
+        }
+        </ul>
     </div>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>     
     <script>window.jQuery || document.write('<script src="/Scripts/libs/jquery-1.9.1.min.js"><\/script>')</script>
