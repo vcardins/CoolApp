@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Mvc;
+using CoolChat.Models;
 
 namespace CoolChat.Controllers
 {
@@ -20,7 +21,7 @@ namespace CoolChat.Controllers
         // GET api/home/5
         public JsonResult StartSession()
         {
-            return Json(new { success = true, username = "maor", items = new List<string>() }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, username = User.Identity.Name, items = new List<string>() }, JsonRequestBehavior.AllowGet);
         }
 
         // GET api/home/5

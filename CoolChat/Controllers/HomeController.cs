@@ -1,15 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Security;
+using CoolChat.Models;
 
 namespace CoolChat.Controllers
 {
     public class HomeController : Controller
     {
-        //Test Gui Communication    
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Login(AccountModel model)
+        {
+            FormsAuthentication.SetAuthCookie(model.AccountName, true);
+            return RedirectToAction("Chat", model);
+        }
+
+        public ActionResult Chat(AccountModel model)
+        {
+            return View(model);
         }
 
         // GET api/home
