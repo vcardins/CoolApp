@@ -6,7 +6,7 @@ namespace CoolChat.Controllers
 {
     public class HomeController : Controller
     {
-
+        //Test Gui Communication    
         public ActionResult Index()
         {
             return View();
