@@ -71,6 +71,9 @@
     <Reference Include="WebActivator">
       <HintPath>..\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.2\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppStartup.Ninject.cs" />

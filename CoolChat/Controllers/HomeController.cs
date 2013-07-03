@@ -1,26 +1,42 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Security;
 using CoolChat.Core.Interfaces.Service;
+using CoolChat.Models;
 using CoolChat.Models.Chats;
-using Omu.ValueInjecter;
+using System.Linq;
 
 namespace CoolChat.Controllers
 {
     public class HomeController : Controller
     {
-        private IUserService _userService;
+        protected readonly IUserService UserService;
 
-        //Test Gui Communication    
+        public HomeController(IUserService userService)
+        {
+            UserService = userService;
+        }
+
         public ActionResult Index()
         {
-            _userService = DependencyResolver.Current.GetService<IUserService>();
-            var users = _userService.GetAll().ToList();
+            var users = UserService.GetAllReadOnly().Select(x => new SelectListItem{Selected = false, Text = x.FirstName, Value = x.Username}).ToList();
+            var homeViewModel = new HomeViewModel {ListChatUsers = users, ChatUser = new ChatUser()};
+            return View(homeViewModel);
+        }
 
-            List<ChatUser> chatUsers = users.Select(x => new ChatUser().InjectFrom(x)).Cast<ChatUser>().ToList();
+        public ActionResult Login(HomeViewModel model)
+        {
+            FormsAuthentication.SetAuthCookie(model.ChatUser.Username, true);
+            return RedirectToAction("Chat", model);
+        }
 
-            return View(chatUsers);
+        public ActionResult Chat()
+        {
+            var users = UserService.GetAllReadOnly().Select(x => new ChatUser { Username = x.Username, UserId = x.UserId, PhotoFile = x.PhotoFile, DisplayName = x.DisplayName}).ToList();
+            var chatUser = new ChatUser {Username = HttpContext.User.Identity.Name};
+            var chatViewModel = new ChatViewModel { ListChatUsers = new ChatUserList{ChatUsers =  users}, ChatUser = chatUser };
+            return View(chatViewModel);
         }
 
         // GET api/home

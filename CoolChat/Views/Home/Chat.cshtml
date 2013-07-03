@@ -1,7 +1,5 @@
-﻿@model CoolChat.Models.HomeViewModel
+﻿@model CoolChat.Models.ChatViewModel
 
-<script type="text/javascript" src="~/Scripts/libs/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="~/Scripts/libs/json2.min.js"></script>
 @{
     ViewBag.Title = "title";
 }
@@ -36,10 +34,24 @@
 
 <body>
     <div id="main_container">
-        @Html.DropDownListFor(c => c.ChatUser.Username, Model.ListChatUsers)
-        <input type="submit"  value="Login" />
+        <label>Hello @Model.ChatUser.Username</label>
+        <ul>
+            @foreach (var user in Model.ListChatUsers.ChatUsers)
+            {
+                if(user.Username != Model.ChatUser.Username)
+                {
+                    <li><a href="#" data-username="@user.Username" data-action="chat">Chat With @user.DisplayName</a></li>
+                }
+            }
+        </ul>
+        
+        <!-- YOUR BODY HERE -->
+
     </div>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>     
     <script>window.jQuery || document.write('<script src="/Scripts/libs/jquery-1.9.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="~/Scripts/libs/json2.min.js"></script>
+    <script type="text/javascript" src="/Scripts/libs/jquery.signalR-1.1.2.js"></script>
+    <script src="~/signalr/hubs"></script>
     <script type="text/javascript" src="/Scripts/custom/chat.js"></script>     
 </body>
