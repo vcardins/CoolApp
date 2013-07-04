@@ -185,7 +185,7 @@
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Extensions\ActionDescriptor\ActionDescriptorExtensions.cs" />
+    <Compile Include="Extensions\ActionDescriptors\ActionDescriptorExtensions.cs" />
     <Compile Include="Extensions\ActionResult\ActionResultHelpers.cs" />
     <Compile Include="Extensions\ActionResult\JsonNetResult.cs" />
     <Compile Include="Extensions\Controller\ControllerExtensions.cs" />
@@ -193,8 +193,10 @@
     <Compile Include="Extensions\Controller\ControllerExtensions.Views.cs" />
     <Compile Include="Extensions\ModelState\ModelStateExtensions.cs" />
     <Compile Include="Extensions\TempData\TempDataExtensions.Alerts.cs" />
+    <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
     <Compile Include="Filters\LogFilter.cs" />
     <Compile Include="Filters\MultiResponseFormatAttribute.cs" />
+    <Compile Include="Filters\OnlyAnonymousAttribute.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Interfaces\Controller\IBaseController.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -238,6 +240,7 @@
       <DependentUpon>site.less</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Scripts\custom\App.js" />
     <Content Include="Scripts\libs\bootstrap.js" />
     <Content Include="Scripts\libs\bootstrap.min.js" />
     <Content Include="Scripts\custom\chat.js" />

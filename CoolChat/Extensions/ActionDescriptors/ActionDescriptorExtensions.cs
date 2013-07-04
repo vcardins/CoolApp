@@ -13,11 +13,10 @@ using System;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace CoolChat.Extensions.ActionDescriptor
+namespace CoolChat.Extensions.ActionDescriptors
 {
     #region
 
-    
 
     #endregion
 
@@ -36,6 +35,13 @@ namespace CoolChat.Extensions.ActionDescriptor
                             { "action", actionName }                                                 
                         });
             }
+        }
+
+        public static bool HasAttribute<T>(this ActionDescriptor actionDescriptor) where T : Attribute
+        {
+            var attrType = typeof(T);
+            return (actionDescriptor.IsDefined(attrType, true) ||
+                    actionDescriptor.ControllerDescriptor.IsDefined(attrType, true));
         }
     }
 }

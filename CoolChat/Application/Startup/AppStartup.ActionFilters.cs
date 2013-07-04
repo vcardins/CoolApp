@@ -12,6 +12,7 @@
 
 using System.Web.Mvc;
 using CoolChat.Application.Startup;
+using CoolChat.Filters;
 
 #endregion
 
@@ -33,7 +34,7 @@ namespace CoolChat.Application.Startup
         public static void ActionFilters()
         {
             GlobalFilters.Filters.Add(new HandleErrorAttribute());
-            
+            GlobalFilters.Filters.Add(new CustomAuthorizeAttribute());
         }
     }
 }

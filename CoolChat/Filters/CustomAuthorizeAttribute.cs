@@ -10,10 +10,9 @@
 #endregion
 
 using System.Web.Mvc;
-using TaskForceManager.Security.Authorization;
-using TaskForceManager.Security.Extensions;
+using CoolChat.Extensions.ActionDescriptors;
 
-namespace TaskForceManager.Filters
+namespace CoolChat.Filters
 {
     #region
 

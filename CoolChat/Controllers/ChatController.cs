@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Http;
 using System.Web.Mvc;
 using CoolChat.Core.Interfaces.Service;
-using CoolChat.Core.Models;
 using CoolChat.Infraestructure.Profiles;
 using CoolChat.Models;
 using CoolChat.Models.Chats;
@@ -14,30 +12,12 @@ namespace CoolChat.Controllers
     public class ChatController : Controller
     {
         private IUserService _userService;
-        private string _LoggedUser;
         protected readonly IChatService ChatService;
 
         public ChatController(IChatService chatService)
         {
             ChatService = chatService;
         }
-
-        //[System.Web.Mvc.HttpGet]
-        //public ActionResult Index(int id)
-        //{
-        //    _LoggedUser = HttpContext.User.Identity.Name;
-
-        //    IEnumerable<Chat> chats = ChatService.GetChats(id);
-
-        //    var chatsModel = new ChatsModel
-        //    {
-        //        Chats = chats,
-        //        UserFromId = UserProfile.Current.UserId,
-        //        UserToId = id
-        //    };
-
-        //    return View(chatsModel);
-        //}
 
         public ActionResult Index()
         {

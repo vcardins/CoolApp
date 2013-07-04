@@ -2,13 +2,13 @@
 
 namespace CoolChat.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
        
         private bool _IsAuthenticated;
         private string _LoggedUser;
 
-        [System.Web.Http.AllowAnonymous]
         public ActionResult Index()
         {
             _IsAuthenticated = Request.IsAuthenticated;
