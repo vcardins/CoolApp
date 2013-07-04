@@ -241,9 +241,10 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Scripts\custom\App.js" />
-    <Content Include="Scripts\libs\bootstrap.js" />
+    <Content Include="Scripts\custom\CoolChat.js" />
+    <Content Include="Scripts\custom\Copy of chat.js" />
     <Content Include="Scripts\libs\bootstrap.min.js" />
-    <Content Include="Scripts\custom\chat.js" />
+    <Content Include="Scripts\custom\Chat.js" />
     <Content Include="Content\less\bootstrap.2.3.2\wells.less" />
     <Content Include="Content\less\bootstrap.2.3.2\variables.less" />
     <Content Include="Content\less\bootstrap.2.3.2\utilities.less" />
@@ -299,12 +300,11 @@
     <Content Include="Content\less\fontawesome\path.less" />
     <Content Include="Content\less\fontawesome\variables.less" />
     <Content Include="Content\less\site.less" />
-    <None Include="Scripts\libs\jquery-1.9.1.intellisense.js" />
+    <None Include="Scripts\libs\jquery\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\libs\jquery\jquery.cookie.js" />
     <Content Include="Scripts\libs\less.min.js" />
-    <Content Include="Scripts\libs\jquery.signalR-1.1.2.js" />
-    <Content Include="Scripts\libs\jquery.signalR-1.1.2.min.js" />
-    <Content Include="Scripts\libs\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\libs\json2.js" />
+    <Content Include="Scripts\libs\jquery\jquery.signalR-1.1.2.min.js" />
+    <Content Include="Scripts\libs\jquery\jquery-1.9.1.min.js" />
     <Content Include="Scripts\libs\json2.min.js" />
     <Content Include="Scripts\libs\modernizr-2.6.2-respond-1.1.0.min.js" />
     <Content Include="Scripts\libs\underscore-min.js" />
@@ -316,7 +316,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Scripts\libs\jquery-1.9.1.min.map" />
+    <Content Include="Scripts\libs\jquery\jquery-1.9.1.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LogOn.cshtml">

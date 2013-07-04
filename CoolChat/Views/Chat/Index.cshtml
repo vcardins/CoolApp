@@ -5,11 +5,14 @@
 <label>Hello @Model.ChatUser.Username</label>
 <ul>
     @foreach (var user in Model.ListChatUsers.ChatUsers) {
-        <li><a href="#" data-username="@user.Username" data-action="chat">Chat With @user.DisplayName</a></li>
+        <li><a href="#" data-username="@user.Username" data-action="chat" data-online="true">Chat With @user.DisplayName</a></li>
     }
 </ul>
         
 @section PostScripts{
-    @Scripts.Render("/signalr/hubs")
-    @Scripts.Render("~/Scripts/custom/chat.js")
+    @Scripts.Render(
+        "~/Scripts/libs/jquery/jquery.signalR-1.1.2.min.js", 
+        "/signalr/hubs", "~/Scripts/custom/Chat.js"
+        //"~/Scripts/custom/CoolChat.js"
+        )
 }

@@ -12,9 +12,10 @@
         ga('send', 'pageview');
     </script>
     -->
-
     @Scripts.Render("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
-    <script>window.jQuery || document.write('<script src="/Scripts/libs/jquery-1.9.1.min.js"><\/script>')</script>
-    @Scripts.Render("~/Scripts/libs/json2.min.js")
-    @Scripts.Render("~/Scripts/libs/jquery.signalR-1.1.2.min.js")    
-    
+    <script>window.jQuery || document.write('<script src="/Scripts/libs/jquery/jquery-1.9.1.min.js"><\/script>')</script>
+    @Scripts.Render(
+        "~/Scripts/libs/jquery/jquery.cookie.js",
+        "~/Scripts/libs/json2.min.js",
+        "~/Scripts/custom/App.js"
+    )  

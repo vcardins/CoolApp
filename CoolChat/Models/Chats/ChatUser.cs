@@ -10,6 +10,8 @@ namespace CoolChat.Models.Chats
         public string DisplayName { get; set; }
        
         public string PhotoFile { get; set; }
+
+        public bool IsOnline { get; set; }
       
     }
 }
