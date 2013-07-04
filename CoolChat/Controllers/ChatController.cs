@@ -1,16 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Mvc;
 using CoolChat.Core.Interfaces.Service;
 using CoolChat.Core.Models;
 using CoolChat.Infraestructure.Profiles;
+using CoolChat.Models;
 using CoolChat.Models.Chats;
+using Omu.ValueInjecter;
 
 namespace CoolChat.Controllers
 {
     public class ChatController : Controller
     {
-
+        private IUserService _userService;
+        private string _LoggedUser;
         protected readonly IChatService ChatService;
 
         public ChatController(IChatService chatService)
@@ -18,27 +22,50 @@ namespace CoolChat.Controllers
             ChatService = chatService;
         }
 
-        [System.Web.Mvc.HttpGet]
-        public ActionResult Index(int id)
+        //[System.Web.Mvc.HttpGet]
+        //public ActionResult Index(int id)
+        //{
+        //    _LoggedUser = HttpContext.User.Identity.Name;
+
+        //    IEnumerable<Chat> chats = ChatService.GetChats(id);
+
+        //    var chatsModel = new ChatsModel
+        //    {
+        //        Chats = chats,
+        //        UserFromId = UserProfile.Current.UserId,
+        //        UserToId = id
+        //    };
+
+        //    return View(chatsModel);
+        //}
+
+        public ActionResult Index()
         {
+            return View(GetChatModel());
+        }
 
-            IEnumerable<Chat> chats = ChatService.GetChats(id);
+        private IEnumerable<ChatUser> GetChatUsers()
+        {
+            _userService = DependencyResolver.Current.GetService<IUserService>();
+            var users = _userService.Find(x => !x.Username.Equals(UserProfile.Current.Username)).ToList();
 
-            var chatsModel = new ChatsModel
+            var chatUsers = users.Select(x => new ChatUser().InjectFrom(x)).Cast<ChatUser>().ToList();
+            return chatUsers;
+        }
+
+        private ChatViewModel GetChatModel()
+        {
+            var chatUser = new ChatUser();
+            chatUser.InjectFrom(UserProfile.Current);
+
+            var chatViewModel = new ChatViewModel
             {
-                Chats = chats,
-                UserFromId = UserProfile.Current.UserId,
-                UserToId = id
+                ListChatUsers = new ChatUserList { ChatUsers = GetChatUsers() },
+                ChatUser = chatUser
             };
-
-            return View(chatsModel);
+            return chatViewModel;
         }
 
-        // GET api/home
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
         // GET api/home/5
         public JsonResult StartSession()
@@ -70,20 +97,6 @@ namespace CoolChat.Controllers
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST api/home
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/home/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/home/5
-        public void Delete(int id)
-        {
-        }
     }
 }
 

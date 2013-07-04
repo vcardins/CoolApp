@@ -18,6 +18,7 @@ using CoolChat.Core.Interfaces.Service;
 using CoolChat.Core.Services;
 using CoolChat.DependencyResolution;
 using CoolChat.Infraestructure.Data;
+using CoolChat.Infraestructure.Security;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -88,6 +89,8 @@ namespace CoolChat.DependencyResolution
             // infrastructure
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             kernel.Bind<IDatabaseFactory>().To<DatabaseFactory>().InRequestScope();
+
+            kernel.Bind<IAuthenticationService>().To<AuthenticationService>().InRequestScope();
 
             kernel.Bind<IChatRepository>().To<ChatRepository>().InRequestScope();
             kernel.Bind<IChatService>().To<ChatService>().InRequestScope();

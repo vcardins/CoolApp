@@ -6,5 +6,6 @@ namespace CoolChat.Core.Interfaces.Service
     {
 		// Add extra serviceinterface methods in a partial interface
         User GetByUsername(string name);
+
     }
 }

@@ -1,0 +1,44 @@
+﻿    
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="csrf-param" content="__RequestVerificationToken">
+        <meta name="csrf-token" content="@Html.AntiForgeryToken()">
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
+        
+        @Styles.Render("~/Content/less/site.less")        
+        @RenderSection("Styles", required: false)
+        @Scripts.Render("~/Scripts/libs/modernizr-2.6.2-respond-1.1.0.min.js")
+
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    @RenderSection("PreScripts", required: false)
+    
+    <div class="main-container">
+        
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    @RenderPage("_Scripts.cshtml")
+    @RenderSection("PostScripts", required: false)
+
+    </body>
+</html>

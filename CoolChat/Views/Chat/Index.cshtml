@@ -1,0 +1,15 @@
+﻿@model CoolChat.Models.ChatViewModel
+@section Styles{
+   @Styles.Render("~/Content/less/global/chat.less")
+}
+<label>Hello @Model.ChatUser.Username</label>
+<ul>
+    @foreach (var user in Model.ListChatUsers.ChatUsers) {
+        <li><a href="#" data-username="@user.Username" data-action="chat">Chat With @user.DisplayName</a></li>
+    }
+</ul>
+        
+@section PostScripts{
+    @Scripts.Render("/signalr/hubs")
+    @Scripts.Render("~/Scripts/custom/chat.js")
+}

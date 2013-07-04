@@ -7,7 +7,6 @@ namespace CoolChat.Core.Interfaces.Validation
         T Entity { get;  }
     }
     
-
     public interface IValidationContainer
     {
         IDictionary<string, IList<string>> ValidationErrors { get; }

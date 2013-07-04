@@ -25,6 +25,7 @@ namespace CoolChat.Application.Startup
     {
         public static void Routes()
         {
+            RouteTable.Routes.MapHubs();
 
             // Allows to execute "/notfound" when requesting things like /bin or /App_Data.
             RouteTable.Routes.MapRoute(

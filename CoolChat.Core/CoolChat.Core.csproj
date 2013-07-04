@@ -39,6 +39,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +61,7 @@
     <Compile Include="Interfaces\Data\IUnitOfWork.cs" />
     <Compile Include="Interfaces\Data\IUserRepository.cs" />
     <Compile Include="Interfaces\Paging\IPage.cs" />
+    <Compile Include="Interfaces\Service\IAuthenticationService.cs" />
     <Compile Include="Interfaces\Service\IChatService.cs" />
     <Compile Include="Interfaces\Service\IService.cs" />
     <Compile Include="Interfaces\Service\IUserService.cs" />
