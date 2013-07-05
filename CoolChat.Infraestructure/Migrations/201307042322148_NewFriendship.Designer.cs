@@ -5,13 +5,13 @@ namespace CoolChat.Infraestructure.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class UpdateUserProfile : IMigrationMetadata
+    public sealed partial class NewFriendship : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateUserProfile));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NewFriendship));
         
         string IMigrationMetadata.Id
         {
-            get { return "201307031927488_UpdateUserProfile"; }
+            get { return "201307042322148_NewFriendship"; }
         }
         
         string IMigrationMetadata.Source

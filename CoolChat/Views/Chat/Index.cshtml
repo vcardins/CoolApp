@@ -5,7 +5,7 @@
 <label>Hello @Model.ChatUser.Username</label>
 <ul>
     @foreach (var user in Model.ListChatUsers.ChatUsers) {
-        <li><a href="#" data-username="@user.Username" data-action="chat" data-online="true">Chat With @user.DisplayName</a></li>
+        <li><a href="#" data-username="@user.Username" data-action="chat" data-online="true">Chat With @user.DisplayName</a><label id="@String.Format("online-message-{0}",user.Username)" style="display: none;">Online</label></li>
     }
 </ul>
         

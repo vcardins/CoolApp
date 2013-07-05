@@ -335,6 +335,10 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoolChat.Common\CoolChat.Common.csproj">
+      <Project>{0571232b-02c5-4abb-8499-d64f48af9d91}</Project>
+      <Name>CoolChat.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoolChat.Core\CoolChat.Core.csproj">
       <Project>{e0189e60-a65d-4fc4-81a1-2b810eb0a2ef}</Project>
       <Name>CoolChat.Core</Name>
