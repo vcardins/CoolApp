@@ -336,7 +336,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoolChat.Common\CoolChat.Common.csproj">
-      <Project>{0571232B-02C5-4ABB-8499-D64F48AF9D91}</Project>
+      <Project>{0571232b-02c5-4abb-8499-d64f48af9d91}</Project>
       <Name>CoolChat.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\CoolChat.Core\CoolChat.Core.csproj">

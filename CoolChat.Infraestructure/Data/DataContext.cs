@@ -10,10 +10,13 @@ namespace CoolChat.Infraestructure.Data
 
         public DbSet<Chat> Chats { get; set; }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //}
+        public DbSet<Friendship> Friendships { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>(); 
+        }
                    
     }
 }

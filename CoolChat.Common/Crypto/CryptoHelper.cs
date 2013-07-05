@@ -10,7 +10,9 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CoolChat.Common.Crypto
 {
@@ -96,6 +98,18 @@ namespace CoolChat.Common.Crypto
                 return count;
             }
             return StartCount;
+        }
+
+        public static IEnumerable<string> ParseHashtag(string message)
+        {
+            var hashTag = new Regex(@"#\w+");
+
+            while(hashTag.Match(message).Success)
+            {
+                string value = hashTag.Match(message).Groups[0].Value;
+                message = message.Replace(value, "");
+                yield return value;
+            }
         }
     }
 }
