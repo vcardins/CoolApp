@@ -8,7 +8,7 @@ namespace CoolChat.Infraestructure.Seeders
         public static void Seed(DataContext context)
         {
             SeedMembership(context);
-
+            SeedFriendship(context);
         }
         
     }

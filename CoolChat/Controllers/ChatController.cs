@@ -11,7 +11,7 @@ namespace CoolChat.Controllers
 {
     public class ChatController : Controller
     {
-        private IUserService _userService;
+        private IFriendshipService _frinedshipService;
         protected readonly IChatService ChatService;
 
         public ChatController(IChatService chatService)
@@ -26,10 +26,10 @@ namespace CoolChat.Controllers
 
         private IEnumerable<ChatUser> GetChatUsers()
         {
-            _userService = DependencyResolver.Current.GetService<IUserService>();
-            var users = _userService.Find(x => !x.Username.Equals(UserProfile.Current.Username)).ToList();
+            _frinedshipService = DependencyResolver.Current.GetService<IFriendshipService>();
+            var friends = _frinedshipService.GetFriendshipsByUserId(UserProfile.Current.UserId);
 
-            var chatUsers = users.Select(x => new ChatUser().InjectFrom(x)).Cast<ChatUser>().ToList();
+            var chatUsers = friends.Select(x => new ChatUser().InjectFrom((x.UserId == UserProfile.Current.UserId)?x.Friend:x.User)).Cast<ChatUser>().ToList();
             return chatUsers;
         }
 

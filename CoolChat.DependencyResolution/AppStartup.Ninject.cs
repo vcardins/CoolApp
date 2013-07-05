@@ -96,7 +96,8 @@ namespace CoolChat.DependencyResolution
             kernel.Bind<IChatService>().To<ChatService>().InRequestScope();
             kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
             kernel.Bind<IUserService>().To<UserService>().InRequestScope();
-           
+            kernel.Bind<IFriendshipRepository>().To<FriendshipRepository>().InRequestScope();
+            kernel.Bind<IFriendshipService>().To<FriendshipService>().InRequestScope();
         }
 
         public class NinjectControllerFactory : DefaultControllerFactory

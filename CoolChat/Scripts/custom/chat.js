@@ -11,18 +11,26 @@
             startChatSessionCallback(data);
         };
 
-        chatHub.client.ReceiveMessage = function(data) {
-            var userSource = data.userSource;
-
-            chatboxtitle = userSource;
+        chatHub.client.ReceiveMessage = function (data) {
 
             if (data.message != '') {
+                chatWith(data.userSource);
                 data.message = data.message.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
-                $("#chatbox_" + chatboxtitle + " .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">' + userSource + ':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">' + data.message + '</span></div>');
+                $("#chatbox_" + data.userSource + " .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">' + data.userSource + ':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">' + data.message + '</span></div>');
             }
         };
+
+        chatHub.client.SignalOnline = function (userName) {
+            $("#online-message-" + userName).show();
+        };
+
+        chatHub.client.SignalOffline = function (userName) {
+            $("#online-message-" + userName).hide();
+        };
     
-        $('[data-action="chat"]').on("click", chatWith);
+        $('[data-action="chat"]').on("click", function () {
+            chatWith($(this).data("username"));
+        });
        
         originalTitle = document.title;
     
@@ -41,6 +49,12 @@
         });
     });
 
+    function verifyConnectedUsers() {
+        $('[data-action="chat"]').each(function () {
+            chatHub.server.verifyPartnersOnline($(this).data("username"));
+        });
+    }
+
     function restructureChatBoxes() {
         align = 0;
         for (x in chatBoxes) {
@@ -58,9 +72,9 @@
         }
     }
 
-    function chatWith() {
+    function chatWith(user) {
 
-        var chatuser = $(this).data("username");
+        var chatuser = user;
         createChatBox(chatuser);
         $("#chatbox_"+chatuser+" .chatboxtextarea").focus();
     }
@@ -224,6 +238,7 @@
 
     function startChatSession(){  
         chatHub.server.startChatSession();
+        verifyConnectedUsers();
     }
 
     function startChatSessionCallback(data)
