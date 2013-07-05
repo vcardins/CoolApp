@@ -11,15 +11,12 @@
             startChatSessionCallback(data);
         };
 
-        chatHub.client.ReceiveMessage = function(data) {
-            var userSource = data.userSource;
-            
-            chatboxtitle = userSource;
+        chatHub.client.ReceiveMessage = function (data) {
 
             if (data.message != '') {
-                chatWith(userSource);
+                chatWith(data.userSource);
                 data.message = data.message.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
-                $("#chatbox_" + chatboxtitle + " .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">' + userSource + ':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">' + data.message + '</span></div>');
+                $("#chatbox_" + data.userSource + " .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">' + data.userSource + ':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">' + data.message + '</span></div>');
             }
         };
 
