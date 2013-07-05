@@ -78,7 +78,6 @@
   <ItemGroup>
     <Compile Include="AppStartup.Ninject.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="NinjectControllerFactory.cs" />
     <Compile Include="NinjectResolver.cs" />
     <Compile Include="NinjectScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

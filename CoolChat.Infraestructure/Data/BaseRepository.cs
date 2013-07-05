@@ -71,7 +71,9 @@ namespace CoolChat.Infraestructure.Data
 
         public virtual void SaveOrUpdate(T entity)
         {
-            if (UnitOfWork.IsPersistent(entity))
+            var isPersistent = UnitOfWork.IsPersistent(entity);
+            //DataContext.Entry(entity).State = isPersistent ? EntityState.Modified : EntityState.Added;
+            if (isPersistent)
             {
                 DataContext.Entry(entity).State = EntityState.Modified;
             }

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
+using System.Web.Mvc;
+using CoolChat.Core.Interfaces.Service;
+using CoolChat.Core.Models;
 using Microsoft.AspNet.SignalR;
 
 namespace CoolChat.Hubs
@@ -10,9 +13,22 @@ namespace CoolChat.Hubs
         #region Hub Methods
         public override Task OnConnected()
         {
-            JoinGroup(Context.User.Identity.Name);
+            var currentUser = Context.User.Identity.Name;
+
+            JoinGroup(currentUser);
+
+            var chatService = DependencyResolver.Current.GetService<IChatService>();
+
+            var chats = chatService.GetLastedChats(currentUser);
 
             return base.OnConnected();
+        }
+
+        public override Task OnReconnected()
+        {
+            JoinGroup(Context.User.Identity.Name);
+
+            return base.OnReconnected();
         }
 
         public override Task OnDisconnected()
@@ -45,7 +61,13 @@ namespace CoolChat.Hubs
 
         public void ChatSendMessage(string to, string message)
         {
-            Clients.Group(to).ReceiveMessage(new { userSource = Context.User.Identity.Name, message = message});
+            var chatService = DependencyResolver.Current.GetService<IChatService>();
+
+            var userSource = Context.User.Identity.Name;
+
+            chatService.InsertNewChat(userSource, to, message);
+
+            Clients.Group(to).ReceiveMessage(new {userSource, message });
         }
         #endregion
     }

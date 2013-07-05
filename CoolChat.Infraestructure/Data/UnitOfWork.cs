@@ -9,26 +9,26 @@ using CoolChat.Core.Models;
 namespace CoolChat.Infraestructure.Data
 {
     public partial class UnitOfWork : IUnitOfWork
-    {        
+    {
         private readonly IDatabaseFactory _databaseFactory;
         private IDataContext _datacontext;
 
         public UnitOfWork(IDatabaseFactory databaseFactory)
         {
-            _databaseFactory = databaseFactory;
-            DataContext.ObjectContext().SavingChanges += (sender, e) => BeforeSave(GetChangedOrNewEntities());
+            this._databaseFactory = databaseFactory;
+            this.DataContext.ObjectContext().SavingChanges += (sender, e) => BeforeSave(this.GetChangedOrNewEntities());
         }
 
         public IDataContext DataContext
         {
-            get { return _datacontext ?? (_datacontext = _databaseFactory.Get()); }
+            get { return this._datacontext ?? (this._datacontext = this._databaseFactory.Get()); }
         }
 
         private IEnumerable<DomainObject> GetChangedOrNewEntities()
         {
             const EntityState NewOrModified = EntityState.Added | EntityState.Modified;
 
-            return DataContext.ObjectContext().ObjectStateManager.GetObjectStateEntries(NewOrModified)
+            return this.DataContext.ObjectContext().ObjectStateManager.GetObjectStateEntries(NewOrModified)
                 .Where(x => x.Entity != null).Select(x => x.Entity as DomainObject);
         }
 

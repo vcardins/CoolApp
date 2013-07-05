@@ -63,6 +63,8 @@
     <Compile Include="Interfaces\Paging\IPage.cs" />
     <Compile Include="Interfaces\Service\IAuthenticationService.cs" />
     <Compile Include="Interfaces\Service\IChatService.cs" />
+    <Compile Include="Interfaces\Service\IChatService.Insert.cs" />
+    <Compile Include="Interfaces\Service\IChatService.LastedChats.cs" />
     <Compile Include="Interfaces\Service\IService.cs" />
     <Compile Include="Interfaces\Service\IUserService.cs" />
     <Compile Include="Interfaces\Validation\IValidationContainer.cs" />

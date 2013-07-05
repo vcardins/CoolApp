@@ -8,7 +8,7 @@ namespace CoolChat.Infraestructure.Data
 
         public IDataContext Get()
         {
-            return this._datacontext ?? (_datacontext = new DataContext());
+            return _datacontext ?? (_datacontext = new DataContext());
         }
 
         public void Dispose()

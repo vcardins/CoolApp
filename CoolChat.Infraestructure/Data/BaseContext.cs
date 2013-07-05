@@ -11,6 +11,7 @@
 
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Objects;
 using CoolChat.Core.Interfaces.Data;
 using CoolChat.Core.Models;
@@ -53,6 +54,7 @@ namespace CoolChat.Infraestructure.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DataContext>());
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             base.OnModelCreating(modelBuilder);
         }

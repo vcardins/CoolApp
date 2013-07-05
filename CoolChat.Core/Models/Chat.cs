@@ -1,10 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
 
 namespace CoolChat.Core.Models
 {
-    [DataContract]
     public class Chat : DomainObject
     {
         [Key]

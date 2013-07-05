@@ -1,5 +1,4 @@
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using CoolChat.Core.Models;
 
 namespace CoolChat.Infraestructure.Data
@@ -11,11 +10,10 @@ namespace CoolChat.Infraestructure.Data
 
         public DbSet<Chat> Chats { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>(); 
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //}
                    
     }
 }
