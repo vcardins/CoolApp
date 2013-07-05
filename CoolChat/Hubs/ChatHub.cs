@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using CoolChat.Common.Crypto;
 using CoolChat.Core.Interfaces.Service;
-using CoolChat.Core.Models;
 using Microsoft.AspNet.SignalR;
 
 namespace CoolChat.Hubs
@@ -29,20 +26,7 @@ namespace CoolChat.Hubs
             return base.OnConnected();
         }
 
-        public override Task OnReconnected()
-        {
-            var currentUser = Context.User.Identity.Name;
-
-            JoinGroup(currentUser);
-
-            var chatService = DependencyResolver.Current.GetService<IChatService>();
-
-            var chats = chatService.GetLastedChats(currentUser);
-
-            return base.OnReconnected();
-        }
-
-        public override Task OnReconnected()
+       public override Task OnReconnected()
         {
             var currentUser = Context.User.Identity.Name;
 
@@ -59,7 +43,7 @@ namespace CoolChat.Hubs
 
             var userService = DependencyResolver.Current.GetService<IUserService>();
 
-            IFriendshipService frinedshipService = DependencyResolver.Current.GetService<IFriendshipService>();
+            var frinedshipService = DependencyResolver.Current.GetService<IFriendshipService>();
             var friends = frinedshipService.GetFriendshipsByUsername(currentUser);
 
             var userNames = friends.Select(x => (x.User.Username == currentUser)?x.Friend.Username:x.User.Username).ToList();

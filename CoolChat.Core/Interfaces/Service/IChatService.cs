@@ -7,5 +7,9 @@ namespace CoolChat.Core.Interfaces.Service
     {
 		// Add extra serviceinterface methods in a partial interface
         IEnumerable<Chat> GetChats(int id);
+
+        bool InsertNewChat(string userFrom, string userTo, string message);
+
+        IEnumerable<Chat> GetLastedChats(string userName);
     }
 }

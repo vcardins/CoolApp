@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using CoolChat.Core.Models;
 
 namespace CoolChat.Infraestructure.Data
