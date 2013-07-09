@@ -70,10 +70,6 @@
     <Compile Include="Helpers\CacheHelper.cs" />
     <Compile Include="Helpers\Common.cs" />
     <Compile Include="Helpers\StaticInstance.cs" />
-    <Compile Include="Migrations\201307042322148_NewFriendship.cs" />
-    <Compile Include="Migrations\201307042322148_NewFriendship.Designer.cs">
-      <DependentUpon>201307042322148_NewFriendship.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Profiles\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,11 +92,6 @@
       <Project>{E0189E60-A65D-4FC4-81A1-2B810EB0A2EF}</Project>
       <Name>CoolChat.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201307042322148_NewFriendship.resx">
-      <DependentUpon>201307042322148_NewFriendship.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

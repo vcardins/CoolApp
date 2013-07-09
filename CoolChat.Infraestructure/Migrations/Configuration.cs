@@ -1,4 +1,3 @@
-using CoolChat.Core.Models;
 using CoolChat.Infraestructure.Data;
 using CoolChat.Infraestructure.Seeders;
 
@@ -11,6 +10,7 @@ namespace CoolChat.Infraestructure.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            AutomaticMigrationDataLossAllowed = true;   
         }
 
         protected override void Seed(DataContext context)
