@@ -6,9 +6,31 @@
 
 @using(Html.BeginForm("Pay","PayPal", FormMethod.Post))
 {
-    @Html.HiddenFor(model => model.Receiver);
-    @Html.HiddenFor(model => model.Amount);
-    @Html.HiddenFor(model => model.ReturnCancelURL);
-    @Html.HiddenFor(model => model.ReturnURL);
+    @Html.HiddenFor(model => model.Receiver)
+    @Html.HiddenFor(model => model.Amount)
+    @Html.HiddenFor(model => model.Fee)
+    @Html.HiddenFor(model => model.FeeReceiver)
+    @Html.HiddenFor(model => model.ReturnCancelURL)
+    @Html.HiddenFor(model => model.ReturnURL)
+    @Html.HiddenFor(model => model.PreapprovalKey)
     <input type="submit" value="BUY"/>
+}
+
+@using(Html.BeginForm("PayPreapproved","PayPal", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Receiver)
+    @Html.HiddenFor(model => model.Amount)
+    @Html.HiddenFor(model => model.Fee)
+    @Html.HiddenFor(model => model.FeeReceiver)
+    @Html.HiddenFor(model => model.ReturnCancelURL)
+    @Html.HiddenFor(model => model.ReturnURL)
+    @Html.HiddenFor(model => model.PreapprovalKey)
+    <input type="submit" value="BUY PREAPPROVED"/>
+}
+
+@using(Html.BeginForm("ConfigurePreappoval","PayPal", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.ReturnCancelURL)
+    @Html.HiddenFor(model => model.ReturnURL)
+    <input type="submit" value="Configure Preapproval"/>
 }

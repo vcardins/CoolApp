@@ -107,6 +107,9 @@
     <Reference Include="RequestReduce.SassLessCoffee">
       <HintPath>..\packages\RequestReduce.SassLessCoffee.1.8.76\Lib\net40\RequestReduce.SassLessCoffee.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="SassAndCoffee.Core">
       <HintPath>..\packages\SassAndCoffee.Core.2.0.2.0\lib\net40-Client\SassAndCoffee.Core.dll</HintPath>
     </Reference>
@@ -218,9 +221,11 @@
     <Compile Include="Models\Chats\ChatUserList.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
     <Compile Include="Models\PayPal\Payment.cs" />
+    <Compile Include="Models\PayPal\Preapproval.cs" />
     <Compile Include="Models\ViewInfoModel.cs" />
     <Compile Include="Enums\ViewInfoStatus.cs" />
-    <Compile Include="PayPalHelper\PayPalHelper.cs" />
+    <Compile Include="PayPalHelper\PayPalHelper.Preapproval.cs" />
+    <Compile Include="PayPalHelper\PayPalHelper.Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\ContacUsViewModel.cs" />
@@ -339,6 +344,7 @@
     <Content Include="Views\PayPal\Error.cshtml" />
     <Content Include="Views\PayPal\Success.cshtml" />
     <Content Include="Views\Home\SelectApp.cshtml" />
+    <Content Include="Views\PayPal\ConfigurePreappoval.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
