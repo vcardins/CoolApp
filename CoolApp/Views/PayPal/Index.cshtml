@@ -1,0 +1,14 @@
+﻿@model CoolApp.Models.PayPal.Payment
+
+@{
+    Layout = null;
+}
+
+@using(Html.BeginForm("Pay","PayPal", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Receiver);
+    @Html.HiddenFor(model => model.Amount);
+    @Html.HiddenFor(model => model.ReturnCancelURL);
+    @Html.HiddenFor(model => model.ReturnURL);
+    <input type="submit" value="BUY"/>
+}
