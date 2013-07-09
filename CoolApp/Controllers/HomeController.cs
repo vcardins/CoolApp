@@ -15,7 +15,7 @@ namespace CoolApp.Controllers
             if (_IsAuthenticated)
             {
                 _LoggedUser = HttpContext.User.Identity.Name;
-                return RedirectToAction("Index", "Chat");
+                return View("SelectApp");
             }
 
             return RedirectToAction("Login", "Account");
