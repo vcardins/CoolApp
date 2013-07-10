@@ -60,6 +60,7 @@
     <Compile Include="Data\BaseContext.cs" />
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Data\ChatRepository.cs" />
+    <Compile Include="Data\PreApprovalRepository.cs" />
     <Compile Include="Data\Copy of UserRepository.cs" />
     <Compile Include="Data\DatabaseFactory.cs" />
     <Compile Include="Data\DataContext.cs" />
