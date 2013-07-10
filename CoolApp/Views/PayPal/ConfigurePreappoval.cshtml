@@ -1,0 +1,16 @@
+﻿@model CoolApp.Models.PayPal.Preapproval
+
+@{
+    Layout = null;
+}
+
+<html>
+    <head>
+        <script src="https://www.paypalobjects.com/js/external/dg.js" type="text/javascript"></script>
+    </head>
+
+    <body>
+        <a href="@String.Format("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-preapproval&preapprovalkey={0}",Model.PreapprovalKey)">Configure Now</a>
+    </body>
+
+</html>
