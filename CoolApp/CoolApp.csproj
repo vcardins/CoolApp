@@ -198,6 +198,7 @@
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
+    <Compile Include="Controllers\PushNotificationController.cs" />
     <Compile Include="Extensions\ActionDescriptors\ActionDescriptorExtensions.cs" />
     <Compile Include="Extensions\ActionResult\ActionResultHelpers.cs" />
     <Compile Include="Extensions\ActionResult\JsonNetResult.cs" />

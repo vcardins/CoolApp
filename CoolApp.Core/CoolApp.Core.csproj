@@ -53,6 +53,7 @@
     <Compile Include="Common\Validation\ValidationContainer.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Extensions\DomainObjectExtensions.Validation.cs" />
+    <Compile Include="Interfaces\Data\IPreApprovalRepository.cs" />
     <Compile Include="Interfaces\Data\IFriendshipRepository.cs" />
     <Compile Include="Interfaces\Data\IChatRepository.cs" />
     <Compile Include="Interfaces\Data\IDatabaseFactory.cs" />
@@ -61,7 +62,9 @@
     <Compile Include="Interfaces\Data\IRepository.cs" />
     <Compile Include="Interfaces\Data\IUnitOfWork.cs" />
     <Compile Include="Interfaces\Data\IUserRepository.cs" />
+    <Compile Include="Interfaces\External\IMobileRestAPI.cs" />
     <Compile Include="Interfaces\Paging\IPage.cs" />
+    <Compile Include="Interfaces\Service\IPreApprovalService.cs" />
     <Compile Include="Interfaces\Service\IFriendshipService.cs" />
     <Compile Include="Interfaces\Service\IChatService.Insert.cs" />
     <Compile Include="Interfaces\Service\IChatService.LastedChats.cs" />
@@ -73,10 +76,12 @@
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\DomainObject.cs" />
     <Compile Include="Models\Friendship.cs" />
+    <Compile Include="Models\PreApproval.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\ChatService.cs" />
+    <Compile Include="Services\PreApprovalService.cs" />
     <Compile Include="Services\FriendshipService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>

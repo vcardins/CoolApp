@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using CoolApp.Core.Interfaces.Service;
@@ -15,11 +16,9 @@ namespace CoolApp.Controllers
         {
             var payment = new Payment
                 {
-                    Receiver = "bush@email.com.br",
-                    Amount = 20.00M,
-                    Fee = 2,
-                    FeeReceiver = "tfm@email.com.br",
-                    PreapprovalKey = "PA-7RR891314Y878192Y",
+                    SecundaryReceiver = "bush@email.com.br",
+                    Amount = 100.00M,
+                    PrimaryReceiver = "tfm@email.com.br",
                     ReturnCancelURL = "http://localhost:26927/PayPal",
                     ReturnURL = "http://localhost:26927/PayPal/Success"
                 };
@@ -80,29 +79,34 @@ namespace CoolApp.Controllers
             var userId = UserProfile.Current.UserId;
             _preApprovalService = DependencyResolver.Current.GetService<IPreApprovalService>();
 
-            var userPreApproval = _preApprovalService.Find(x => x.Userd == userId && x.ContractEndDate >= DateTime.Now && x.ContractStartDate <= DateTime.Now).FirstOrDefault();
+            //var userPreApproval = _preApprovalService.Find(x => x.Userd == userId && x.ContractEndDate >= DateTime.Now && x.ContractStartDate <= DateTime.Now).FirstOrDefault();
 
             var payPal = new PayPalHelper.PayPalHelper();
 
-            if (userPreApproval != null)
-            {
-                var userActualPreApproval = payPal.PreapprovalDetailsAPIOperation(userPreApproval.PreApprovalKey);
-                userPreApproval.Approved = userActualPreApproval.approved != null && userActualPreApproval.approved.Value;
-                userPreApproval.ContractStartDate = DateTime.Parse(userActualPreApproval.startingDate);
-                userPreApproval.ContractEndDate = DateTime.Parse(userActualPreApproval.endingDate);
-                _preApprovalService.SaveOrUpdate(userPreApproval);
+            //if (userPreApproval != null)
+            //{
+            //    var userActualPreApproval = payPal.PreapprovalDetailsAPIOperation(userPreApproval.PreApprovalKey);
+            //    userPreApproval.Approved = userActualPreApproval.approved != null && userActualPreApproval.approved.Value;
+            //    userPreApproval.ContractStartDate = DateTime.Parse(userActualPreApproval.startingDate);
+            //    userPreApproval.ContractEndDate = DateTime.Parse(userActualPreApproval.endingDate);
+            //    _preApprovalService.SaveOrUpdate(userPreApproval);
                 
-                if(!userPreApproval.Approved)
-                {
-                    return View("Error");
-                }
-            }
-            else
-            {
-                return View("Error");   
-            }
+            //    if(!userPreApproval.Approved)
+            //    {
+            //        return View("Error");
+            //    }
+            //}
+            //else
+            //{
+            //    return View("Error");   
+            //}
 
-            payment.PreapprovalKey = userPreApproval.PreApprovalKey;
+            var preApprovalKeys = new Dictionary<int, string>();
+            preApprovalKeys.Add(2, "PA-7RR891314Y878192Y");
+            preApprovalKeys.Add(3, "");
+            string preApprovalKey = "";
+            preApprovalKeys.TryGetValue(userId, out preApprovalKey);
+            payment.PreapprovalKey = preApprovalKey;
 
             var responsePay = payPal.GeneratePreapprovalPayment(payment);
             if (responsePay != null)

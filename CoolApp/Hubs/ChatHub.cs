@@ -41,16 +41,7 @@ namespace CoolApp.Hubs
 
             LeaveGroup(currentUser);
 
-            var userService = DependencyResolver.Current.GetService<IUserService>();
-
-            IFriendshipService frinedshipService = DependencyResolver.Current.GetService<IFriendshipService>();
-            var friends = frinedshipService.GetFriendshipsByUsername(currentUser);
-
-            var userNames = friends.Select(x => (x.User.Username == currentUser)?x.Friend.Username:x.User.Username).ToList();
-
-            SignalOffline(userNames);
-
-            return base.OnConnected();
+            return base.OnDisconnected();
         }
 
         private Task JoinGroup(string groupName)
@@ -82,6 +73,7 @@ namespace CoolApp.Hubs
                 }
             }
             ConnectedUsers.Remove(groupName);
+            SignOutUser(groupName);
         }
 
         private void InsertUserInList(string groupName)
@@ -111,8 +103,22 @@ namespace CoolApp.Hubs
                 if(connectionsId.Count == 0)
                 {
                     ConnectedUsers.Remove(groupName);
+
+                    SignOutUser(groupName);
                 }
             }
+        }
+
+        private void SignOutUser(string userName)
+        {
+            var currentUser = userName;
+
+            IFriendshipService frinedshipService = DependencyResolver.Current.GetService<IFriendshipService>();
+            var friends = frinedshipService.GetFriendshipsByUsername(currentUser);
+
+            var userNames = friends.Select(x => (x.User.Username == currentUser) ? x.Friend.Username : x.User.Username).ToList();
+
+            SignalOffline(userNames);
         }
         #endregion
 

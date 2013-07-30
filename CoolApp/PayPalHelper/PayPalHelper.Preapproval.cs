@@ -28,8 +28,8 @@ namespace CoolApp.PayPalHelper
                 var envelopeRequest = new RequestEnvelope {errorLanguage = "en_US"};
 
                 const string pattern = "yyyy-MM-dd";
-                
-                var requestPreapproval = new PreapprovalRequest(envelopeRequest, preapproval.CancelURL, "USD", preapproval.ReturnURL, DateTime.Now.ToString(pattern))
+
+                var requestPreapproval = new PreapprovalRequest(envelopeRequest, preapproval.CancelURL, "USD", preapproval.ReturnURL, "2013-07-15")
                     {ipnNotificationUrl = preapproval.IPNHost};
 
                 // IPN URL

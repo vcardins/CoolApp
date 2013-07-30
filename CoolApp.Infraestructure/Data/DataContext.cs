@@ -13,7 +13,7 @@ namespace CoolApp.Infraestructure.Data
 
         public DbSet<Friendship> Friendships { get; set; }
 
-        public DbSet<PreApproval> PreApprovals { get; set; }
+        //public DbSet<PreApproval> PreApprovals { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

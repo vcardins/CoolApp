@@ -40,6 +40,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -60,6 +66,7 @@
     <Compile Include="Data\BaseContext.cs" />
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Data\ChatRepository.cs" />
+    <Compile Include="Data\PreApprovalRepository.cs" />
     <Compile Include="Data\Copy of UserRepository.cs" />
     <Compile Include="Data\DatabaseFactory.cs" />
     <Compile Include="Data\DataContext.cs" />
@@ -69,6 +76,7 @@
     <Compile Include="Helpers\CacheConstants.cs" />
     <Compile Include="Helpers\CacheHelper.cs" />
     <Compile Include="Helpers\Common.cs" />
+    <Compile Include="Helpers\MobileRestAPI.cs" />
     <Compile Include="Helpers\StaticInstance.cs" />
     <Compile Include="Migrations\201307042322148_NewFriendship.cs" />
     <Compile Include="Migrations\201307042322148_NewFriendship.Designer.cs">
