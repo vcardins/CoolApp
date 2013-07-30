@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using System.Xml.Linq;
 using Image = System.Web.UI.WebControls.Image;
 
-namespace CoolApp.Infraestructure.Helpers
+namespace CoolApp.Infrastructure.Helpers
 {
     public static class Common
     {

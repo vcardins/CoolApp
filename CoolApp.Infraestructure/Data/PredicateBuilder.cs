@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace CoolApp.Infraestructure.Data
+namespace CoolApp.Infrastructure.Data
 {
     public static class PredicateBuilder
     {

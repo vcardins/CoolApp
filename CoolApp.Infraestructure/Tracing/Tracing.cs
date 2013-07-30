@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace CoolApp.Infraestructure.Tracing
+namespace CoolApp.Infrastructure.Tracing
 {
     public static class Tracing
     {

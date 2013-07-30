@@ -10,9 +10,9 @@ using CoolApp.Core.Common.Paging;
 using CoolApp.Core.Interfaces.Data;
 using CoolApp.Core.Interfaces.Paging;
 using CoolApp.Core.Models;
-using CoolApp.Infraestructure.Data;
+using CoolApp.Infrastructure.Data;
 
-namespace CoolApp.Infraestructure.Data
+namespace CoolApp.Infrastructure.Data
 {
     /// <summary>
     /// An abstract baseclass handling basic CRUD operations against the context.

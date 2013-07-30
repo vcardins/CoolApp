@@ -1,4 +1,4 @@
-﻿namespace CoolApp.Infraestructure.Helpers
+﻿namespace CoolApp.Infrastructure.Helpers
 {
     public class StaticInstance<T> where T : class, new()
     {

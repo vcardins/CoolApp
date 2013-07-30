@@ -1,6 +1,6 @@
 using CoolApp.Core.Interfaces.Data;
 
-namespace CoolApp.Infraestructure.Data
+namespace CoolApp.Infrastructure.Data
 {
     public partial class DatabaseFactory : IDatabaseFactory
     {

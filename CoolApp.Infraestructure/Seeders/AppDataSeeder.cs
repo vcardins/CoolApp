@@ -1,6 +1,6 @@
-using CoolApp.Infraestructure.Data;
+using CoolApp.Infrastructure.Data;
 
-namespace CoolApp.Infraestructure.Seeders
+namespace CoolApp.Infrastructure.Seeders
 {
 
     public static partial class AppDataSeeder

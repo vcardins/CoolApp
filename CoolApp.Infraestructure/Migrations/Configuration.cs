@@ -1,8 +1,8 @@
-using CoolApp.Infraestructure.Seeders;
-using CoolApp.Infraestructure.Data;
+using CoolApp.Infrastructure.Seeders;
+using CoolApp.Infrastructure.Data;
 using System.Data.Entity.Migrations;
 
-namespace CoolApp.Infraestructure.Migrations
+namespace CoolApp.Infrastructure.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<DataContext>
     {

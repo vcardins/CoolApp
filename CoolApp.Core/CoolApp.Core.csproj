@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -64,6 +65,9 @@
     <Compile Include="Interfaces\Data\IUserRepository.cs" />
     <Compile Include="Interfaces\External\IMobileRestAPI.cs" />
     <Compile Include="Interfaces\Paging\IPage.cs" />
+    <Compile Include="Interfaces\Notifications\INotificationProvider.cs" />
+    <Compile Include="Interfaces\Notifications\INotificationProviderCollection.cs" />
+    <Compile Include="Interfaces\Notifications\INotificationSettings.cs" />
     <Compile Include="Interfaces\Service\IPreApprovalService.cs" />
     <Compile Include="Interfaces\Service\IFriendshipService.cs" />
     <Compile Include="Interfaces\Service\IAuthenticationService.cs" />

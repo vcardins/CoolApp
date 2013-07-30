@@ -1,5 +1,5 @@
 ﻿
-namespace CoolApp.Infraestructure.Helpers
+namespace CoolApp.Infrastructure.Helpers
 {
     public static class CacheConstants
     {

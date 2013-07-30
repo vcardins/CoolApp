@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using CoolApp.Core.Interfaces.Data;
 using CoolApp.Core.Models;
-using CoolApp.Infraestructure.Profiles;
+using CoolApp.Infrastructure.Profiles;
 
-namespace CoolApp.Infraestructure.Data
+namespace CoolApp.Infrastructure.Data
 {
     public class ChatRepository : BaseRepository<Chat>, IChatRepository
     {

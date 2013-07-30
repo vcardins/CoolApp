@@ -15,7 +15,7 @@ using System.Web.Mvc;
 using CoolApp.Core.Interfaces.Service;
 using CoolApp.Core.Models;
 
-namespace CoolApp.Infraestructure.Profiles
+namespace CoolApp.Infrastructure.Profiles
 {
     #region
 

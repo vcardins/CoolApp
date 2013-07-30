@@ -10,7 +10,7 @@ using CoolApp.Core.Interfaces.Service;
 using CoolApp.Core.Interfaces.Validation;
 using CoolApp.Core.Models;
 
-namespace CoolApp.Infraestructure.Security
+namespace CoolApp.Infrastructure.Security
 {
     public class AuthenticationService : IAuthenticationService
     {

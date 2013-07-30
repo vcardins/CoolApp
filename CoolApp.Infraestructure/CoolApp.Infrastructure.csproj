@@ -7,8 +7,8 @@
     <ProjectGuid>{B17065FD-5CE7-4A91-A9CC-5CF9C17DD125}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoolApp.Infraestructure</RootNamespace>
-    <AssemblyName>CoolApp.Infraestructure</AssemblyName>
+    <RootNamespace>CoolApp.Infrastructure</RootNamespace>
+    <AssemblyName>CoolApp.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
@@ -63,6 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="Configuration\AppConfig.Notifications.cs" />
+    <Compile Include="Configuration\Notifications\NotificationConfigurationElement.cs" />
+    <Compile Include="Configuration\Notifications\NotificationProviderCollection.cs" />
+    <Compile Include="Configuration\Notifications\NotificationProviderElement.cs" />
     <Compile Include="Data\BaseContext.cs" />
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Data\ChatRepository.cs" />
@@ -79,6 +85,7 @@
     <Compile Include="Helpers\MobileRestAPI.cs" />
     <Compile Include="Helpers\StaticInstance.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Notifications\NotificationManager.cs" />
     <Compile Include="Profiles\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthenticationService.cs" />

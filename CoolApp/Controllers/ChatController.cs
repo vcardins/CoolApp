@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using CoolApp.Models;
 using CoolApp.Models.Chats;
 using CoolApp.Core.Interfaces.Service;
-using CoolApp.Infraestructure.Profiles;
+using CoolApp.Infrastructure.Profiles;
 using Omu.ValueInjecter;
 
 namespace CoolApp.Controllers

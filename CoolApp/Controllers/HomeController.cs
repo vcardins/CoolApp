@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using CoolApp.Infrastructure.Configuration;
+using CoolApp.Infrastructure.Notifications;
 
 namespace CoolApp.Controllers
 {
@@ -10,7 +12,8 @@ namespace CoolApp.Controllers
         private string _LoggedUser;
 
         public ActionResult Index()
-        {
+        {            
+
             _IsAuthenticated = Request.IsAuthenticated;
             if (_IsAuthenticated)
             {

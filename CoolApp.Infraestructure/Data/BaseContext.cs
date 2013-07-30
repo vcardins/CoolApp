@@ -16,7 +16,7 @@ using System.Data.Objects;
 using CoolApp.Core.Interfaces.Data;
 using CoolApp.Core.Models;
 
-namespace CoolApp.Infraestructure.Data
+namespace CoolApp.Infrastructure.Data
 {
     #region
 

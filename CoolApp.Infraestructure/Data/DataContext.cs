@@ -2,7 +2,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using CoolApp.Core.Models;
 
-namespace CoolApp.Infraestructure.Data
+namespace CoolApp.Infrastructure.Data
 {
     public class DataContext : BaseContext<DataContext>
     {

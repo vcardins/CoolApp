@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using CoolApp.Core.Interfaces.Service;
-using CoolApp.Infraestructure.Profiles;
+using CoolApp.Infrastructure.Profiles;
 using CoolApp.Models.PayPal;
 
 namespace CoolApp.Controllers

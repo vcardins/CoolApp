@@ -6,7 +6,7 @@ using System.Linq;
 using CoolApp.Core.Interfaces.Data;
 using CoolApp.Core.Models;
 
-namespace CoolApp.Infraestructure.Data
+namespace CoolApp.Infrastructure.Data
 {
     public partial class UnitOfWork : IUnitOfWork
     {

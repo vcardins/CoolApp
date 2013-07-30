@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using CoolApp.Core.Interfaces.External;
+using CoolApp.Infrastructure.Configuration.Notifications;
+using CoolApp.Infrastructure.Notifications;
 using RestSharp;
-using RestSharp.Authenticators;
 
-namespace CoolApp.Infraestructure.Helpers
+namespace CoolApp.Infrastructure.Helpers
 {
     public class MobileRestAPI : IMobileRestAPI
     {
+        private NotificationProviderElement _config = NotificationManager.Default;
+
         const string AppKey = "aB5BBr6oKB5mJYUKjqskLeTQjAWxKbK1";
         const string BaseURL = "https://api.cloud.appcelerator.com";
         private const string Version = "/v1";
@@ -39,6 +38,7 @@ namespace CoolApp.Infraestructure.Helpers
         /// <returns></returns>
         private object QueryStringCall(string urlAction, object bodyObject, Method method)
         {
+            
             if(bodyObject == null)
             {
                 return new { error = "The param dictionary cannot be null." };

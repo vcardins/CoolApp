@@ -4,9 +4,9 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using CoolApp.Core.Models;
-using CoolApp.Infraestructure.Data;
+using CoolApp.Infrastructure.Data;
 
-namespace CoolApp.Infraestructure.Seeders
+namespace CoolApp.Infrastructure.Seeders
 {
 
     public static partial class AppDataSeeder

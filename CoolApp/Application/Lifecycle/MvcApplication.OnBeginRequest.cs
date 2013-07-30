@@ -1,4 +1,4 @@
-using CoolApp.Infraestructure.Tracing;
+using CoolApp.Infrastructure.Tracing;
 
 namespace CoolApp.Application.Lifecycle
 {
