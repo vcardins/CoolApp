@@ -30,7 +30,7 @@ namespace CoolApp.PayPalHelper
             var amountPrimary = payment.Amount * 0.98M;
             var amountSecundary = payment.Amount * 0.02M;
 
-            var receivePrimary = new Receiver(amountPrimary) {email = payment.Receiver};
+            var receivePrimary = new Receiver(amountPrimary) {email = payment.SecundaryReceiver};
             var receiveSecundary = new Receiver(amountSecundary) { email = "tfm@email.com.br" };
 
             // A receiver's email address
@@ -150,12 +150,12 @@ namespace CoolApp.PayPalHelper
             const string sActionType = "PAY";                                           // Action Type
             string sReturnURL = payment.ReturnURL;                                      // ReturnURL and CancelURL used for approval flow
             string sCancelURL = payment.ReturnCancelURL;                                // ReturnURL and CancelURL used for approval flow
-            const string sFeesPayer = "EACHRECEIVER";                                   // who pays the fees
+            const string sFeesPayer = "PRIMARYRECEIVER";                                   // who pays the fees
             string sMemo = payment.Memo;                                                // memo field
-            string receiverAmount = ((1 - payment.Fee / 100.0M) * payment.Amount).ToString(CultureInfo.InvariantCulture);       // transaction amount
-            string feeReceiverAmount = ((payment.Fee / 100.0M) * payment.Amount).ToString(CultureInfo.InvariantCulture);        // transaction amount
-            string receiver = payment.Receiver;                                         //transaction receive
-            string feeReceiver = payment.FeeReceiver;                                   //transaction receive
+            string primaryReceiverAmount = payment.Amount.ToString(CultureInfo.InvariantCulture);      // transaction amount
+            string secundayReceiverAmount = payment.Amount.ToString(CultureInfo.InvariantCulture);     // transaction amount
+            string receiver = payment.PrimaryReceiver;                                  //transaction receive
+            string feeReceiver = payment.SecundaryReceiver;                             //transaction receive
             string sPreapprovalKey = payment.PreapprovalKey;                            //preapprovalKey
             string sender = payment.Sender;                                             //transaction sender
 
@@ -176,9 +176,10 @@ namespace CoolApp.PayPalHelper
             request.AddParameter("feesPayer", sFeesPayer);
             request.AddParameter("memo", sMemo);
             request.AddParameter("preapprovalKey", sPreapprovalKey);
-            request.AddParameter("receiverList.receiver(0).amount", receiverAmount);
+            request.AddParameter("receiverList.receiver(0).amount", primaryReceiverAmount);
             request.AddParameter("receiverList.receiver(0).email", receiver);
-            request.AddParameter("receiverList.receiver(1).amount", feeReceiverAmount);
+            request.AddParameter("receiverList.receiver(0).primary", "true");
+            request.AddParameter("receiverList.receiver(1).amount", secundayReceiverAmount);
             request.AddParameter("receiverList.receiver(1).email", feeReceiver);
             request.AddParameter("senderEmail", sender);
             request.AddParameter("returnUrl", sReturnURL);

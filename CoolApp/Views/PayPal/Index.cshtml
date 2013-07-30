@@ -6,10 +6,10 @@
 
 @using(Html.BeginForm("Pay","PayPal", FormMethod.Post))
 {
-    @Html.HiddenFor(model => model.Receiver)
+    @Html.HiddenFor(model => model.SecundaryReceiver)
     @Html.HiddenFor(model => model.Amount)
     @Html.HiddenFor(model => model.Fee)
-    @Html.HiddenFor(model => model.FeeReceiver)
+    @Html.HiddenFor(model => model.PrimaryReceiver)
     @Html.HiddenFor(model => model.ReturnCancelURL)
     @Html.HiddenFor(model => model.ReturnURL)
     @Html.HiddenFor(model => model.PreapprovalKey)
@@ -18,10 +18,10 @@
 
 @using(Html.BeginForm("PayPreapproved","PayPal", FormMethod.Post))
 {
-    @Html.HiddenFor(model => model.Receiver)
+    @Html.HiddenFor(model => model.SecundaryReceiver)
     @Html.HiddenFor(model => model.Amount)
     @Html.HiddenFor(model => model.Fee)
-    @Html.HiddenFor(model => model.FeeReceiver)
+    @Html.HiddenFor(model => model.PrimaryReceiver)
     @Html.HiddenFor(model => model.ReturnCancelURL)
     @Html.HiddenFor(model => model.ReturnURL)
     @Html.HiddenFor(model => model.PreapprovalKey)
