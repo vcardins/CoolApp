@@ -62,6 +62,7 @@
     <Compile Include="Interfaces\Data\IRepository.cs" />
     <Compile Include="Interfaces\Data\IUnitOfWork.cs" />
     <Compile Include="Interfaces\Data\IUserRepository.cs" />
+    <Compile Include="Interfaces\External\IMobileRestAPI.cs" />
     <Compile Include="Interfaces\Paging\IPage.cs" />
     <Compile Include="Interfaces\Service\IPreApprovalService.cs" />
     <Compile Include="Interfaces\Service\IFriendshipService.cs" />

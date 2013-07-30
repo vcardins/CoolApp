@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoolApp.Infrastructure", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoolApp.Common", "CoolApp.Common\CoolApp.Common.csproj", "{0571232B-02C5-4ABB-8499-D64F48AF9D91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoolApp.Test", "CoolApp.Test\CoolApp.Test.csproj", "{05672E13-9788-4FF8-8F74-1924D78C6AFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{0571232B-02C5-4ABB-8499-D64F48AF9D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0571232B-02C5-4ABB-8499-D64F48AF9D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0571232B-02C5-4ABB-8499-D64F48AF9D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05672E13-9788-4FF8-8F74-1924D78C6AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05672E13-9788-4FF8-8F74-1924D78C6AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05672E13-9788-4FF8-8F74-1924D78C6AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05672E13-9788-4FF8-8F74-1924D78C6AFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

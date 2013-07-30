@@ -41,7 +41,7 @@ namespace CoolApp.Hubs
 
             LeaveGroup(currentUser);
 
-            return base.OnConnected();
+            return base.OnDisconnected();
         }
 
         private Task JoinGroup(string groupName)
@@ -73,7 +73,7 @@ namespace CoolApp.Hubs
                 }
             }
             ConnectedUsers.Remove(groupName);
-            SignOutUser();
+            SignOutUser(groupName);
         }
 
         private void InsertUserInList(string groupName)
@@ -104,14 +104,14 @@ namespace CoolApp.Hubs
                 {
                     ConnectedUsers.Remove(groupName);
 
-                    SignOutUser();
+                    SignOutUser(groupName);
                 }
             }
         }
 
-        private void SignOutUser()
+        private void SignOutUser(string userName)
         {
-            var currentUser = Context.User.Identity.Name;
+            var currentUser = userName;
 
             IFriendshipService frinedshipService = DependencyResolver.Current.GetService<IFriendshipService>();
             var friends = frinedshipService.GetFriendshipsByUsername(currentUser);
