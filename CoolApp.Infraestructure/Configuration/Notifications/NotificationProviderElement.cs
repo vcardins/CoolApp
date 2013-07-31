@@ -80,6 +80,23 @@ namespace CoolApp.Infrastructure.Configuration.Notifications
         /// <summary>
         /// Gets or sets the width.
         /// </summary>
+        [ConfigurationProperty("loginMethodUrl")]
+        public string LoginMethodUrl
+        {
+            get
+            {
+                return (string)base["loginMethodUrl"];
+            }
+
+            set
+            {
+                base["loginMethodUrl"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the width.
+        /// </summary>
         [ConfigurationProperty("authUser")]
         public string AuthUser
         {

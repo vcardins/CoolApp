@@ -46,6 +46,12 @@ namespace CoolApp.Core.Interfaces.Notifications
         string BaseURL { get; set; }
 
         /// <summary>
+        /// Gets or sets the base URL.
+        /// </summary>
+        [ConfigurationProperty("loginMethodUrl")]
+        string LoginMethodUrl { get; set; }
+
+        /// <summary>
         /// Gets or sets the auth User.
         /// </summary>
         [ConfigurationProperty("authUser")]

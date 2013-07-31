@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CoolApp.Core.Interfaces.External;
+using CoolApp.Core.Models.Mobile;
 
 namespace CoolApp.Controllers
 {
@@ -15,7 +12,12 @@ namespace CoolApp.Controllers
         {
             _mobileRestAPI = DependencyResolver.Current.GetService<IMobileRestAPI>();
 
-            _mobileRestAPI.SendNotification("Ticket Closing", "Maor V. requested closing of ticket #169 to Stu S.", "alert", "", "");    
+            _mobileRestAPI.SendNotification(new MobileNotification
+            {
+                Title = "Ticket Closing",
+                Text = "Maor V. requested closing of ticket #169 to Stu S.",
+                Channel = "alert"
+            });    
 
             return Json(true);
         }

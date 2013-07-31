@@ -78,6 +78,7 @@
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\DomainObject.cs" />
     <Compile Include="Models\Friendship.cs" />
+    <Compile Include="Models\Mobile\MobileNotification.cs" />
     <Compile Include="Models\PreApproval.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
