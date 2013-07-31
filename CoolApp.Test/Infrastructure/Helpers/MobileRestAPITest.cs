@@ -2,6 +2,7 @@
 using CoolApp.Core.Interfaces.External;
 using CoolApp.Core.Models.Mobile;
 using NUnit.Framework;
+using CoolApp.Infrastructure.Configuration;
 
 namespace CoolApp.Test.Infrastructure.Helpers
 {
@@ -19,9 +20,16 @@ namespace CoolApp.Test.Infrastructure.Helpers
         [Test]
         public void FormDataPostCall()
         {
-            _mobileRestAPI.SendNotification(new MobileNotification{ Title = "Ticket Closing",
-                                                                    Text =  "Maor V. requested closing of ticket #169 to Stu S.",
-                                                                    Channel = "alert"});       
+            _mobileRestAPI = DependencyResolver.Current.GetService<IMobileRestAPI>();
+            var result = _mobileRestAPI.SendNotification(new MobileNotification
+            {
+                Title = "Ticket Closing",
+                Text = "Maor V. requested closing of ticket #169 to Stu S.",
+                Channel = "alert",
+                Icon = "",
+                Vibrate = true,
+                Sound = "default"
+            });     
         }
     }
 }

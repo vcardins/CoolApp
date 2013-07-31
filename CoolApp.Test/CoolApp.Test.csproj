@@ -39,6 +39,7 @@
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <Choose>
@@ -65,6 +66,10 @@
     <ProjectReference Include="..\CoolApp.DependencyResolution\CoolApp.DependencyResolution.csproj">
       <Project>{e9bc6f47-051b-4f0a-92d2-0ca6a98bfddc}</Project>
       <Name>CoolApp.DependencyResolution</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoolApp.Infraestructure\CoolApp.Infrastructure.csproj">
+      <Project>{B17065FD-5CE7-4A91-A9CC-5CF9C17DD125}</Project>
+      <Name>CoolApp.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

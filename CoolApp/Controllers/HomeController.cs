@@ -1,6 +1,4 @@
 ﻿using System.Web.Mvc;
-using CoolApp.Infrastructure.Configuration;
-using CoolApp.Infrastructure.Notifications;
 
 namespace CoolApp.Controllers
 {

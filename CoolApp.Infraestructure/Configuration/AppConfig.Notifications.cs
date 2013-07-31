@@ -13,5 +13,6 @@ namespace CoolApp.Infrastructure.Configuration
                 return (NotificationConfigurationElement)base["notifications"];
             }
         }
+
     }
 }

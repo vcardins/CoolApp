@@ -64,6 +64,10 @@
     <Compile Include="Interfaces\Data\IUnitOfWork.cs" />
     <Compile Include="Interfaces\Data\IUserRepository.cs" />
     <Compile Include="Interfaces\External\IMobileRestAPI.cs" />
+    <Compile Include="Interfaces\Notifications\INotificationError.cs" />
+    <Compile Include="Interfaces\Notifications\INotificationErrorCollection.cs" />
+    <Compile Include="Interfaces\Notifications\INotificationStatus.cs" />
+    <Compile Include="Interfaces\Notifications\INotificationStatusCollection.cs" />
     <Compile Include="Interfaces\Paging\IPage.cs" />
     <Compile Include="Interfaces\Notifications\INotificationProvider.cs" />
     <Compile Include="Interfaces\Notifications\INotificationProviderCollection.cs" />

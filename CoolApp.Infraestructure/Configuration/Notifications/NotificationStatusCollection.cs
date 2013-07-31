@@ -4,10 +4,10 @@ using System.Configuration;
 namespace CoolApp.Infrastructure.Configuration.Notifications
 {
     /// <summary>
-    /// The notification provider collection.
+    /// The notification Message collection.
     /// </summary>
-    [ConfigurationCollection(typeof(NotificationProviderElement))]
-    public class NotificationProviderCollection : ConfigurationElementCollection
+    [ConfigurationCollection(typeof(NotificationStatusElement))]
+    public class NotificationStatusCollection : ConfigurationElementCollection
     {
         /// <summary>
         /// The property name.
@@ -42,14 +42,14 @@ namespace CoolApp.Infrastructure.Configuration.Notifications
         /// <summary>
         /// The add.
         /// </summary>
-        /// <param name="provider">
-        /// The provider.
+        /// <param name="Message">
+        /// The Message.
         /// </param>
-        public void Add(ProviderSettings provider)
+        public void Add(ProviderSettings Message)
         {
-            if (provider != null)
+            if (Message != null)
             {
-                BaseAdd(provider);
+                BaseAdd(Message);
             }
         }
 
@@ -80,7 +80,7 @@ namespace CoolApp.Infrastructure.Configuration.Notifications
         /// </returns>
         protected override ConfigurationElement CreateNewElement()
         {
-            return new NotificationProviderElement();
+            return new NotificationStatusElement();
         }
 
         /// <summary>
@@ -94,8 +94,8 @@ namespace CoolApp.Infrastructure.Configuration.Notifications
         /// </returns>
         protected override object GetElementKey(ConfigurationElement element)
         {
-            var notificationProviderElement = element as NotificationProviderElement;
-            return notificationProviderElement.Name;
+            var notificationStatusElement = element as NotificationStatusElement;
+            return notificationStatusElement.Name;
         }
 
         /// <summary>
@@ -105,14 +105,11 @@ namespace CoolApp.Infrastructure.Configuration.Notifications
         /// The key.
         /// </param>
         /// <returns>
-        /// The JamesRocks.Photos.NotificationProviderElement.
+        /// The JamesRocks.Photos.NotificationStatusElement.
         /// </returns>
-        public new NotificationProviderElement this[string key]
+        public new NotificationStatusElement this[string key]
         {
-            get
-            {
-                return (NotificationProviderElement)BaseGet(key);
-            }
+            get { return BaseGet(key) as NotificationStatusElement; }
         }
 
         /// <summary>
@@ -122,14 +119,11 @@ namespace CoolApp.Infrastructure.Configuration.Notifications
         /// The index.
         /// </param>
         /// <returns>
-        /// The JamesRocks.Photos.NotificationProviderElement.
+        /// The JamesRocks.Photos.NotificationStatusElement.
         /// </returns>
-        public NotificationProviderElement this[int index]
+        public NotificationStatusElement this[int index]
         {
-            get
-            {
-                return (NotificationProviderElement)BaseGet(index);
-            }
+            get { return BaseGet(index) as NotificationStatusElement; }
 
             set
             {

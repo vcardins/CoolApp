@@ -5,6 +5,6 @@ namespace CoolApp.Core.Interfaces.External
 {
     public interface IMobileRestAPI
     {
-        void SendNotification(MobileNotification mobileNotification);
+        object SendNotification(MobileNotification mobileNotification);
     }
 }

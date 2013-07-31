@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using CoolApp.Core.Interfaces.External;
 using CoolApp.Core.Models.Mobile;
+using CoolApp.Infrastructure.Configuration;
 
 namespace CoolApp.Controllers
 {
@@ -11,15 +12,20 @@ namespace CoolApp.Controllers
         public JsonResult Index()
         {
             _mobileRestAPI = DependencyResolver.Current.GetService<IMobileRestAPI>();
+            
+            var statusConfig = AppConfig.Instance.Notifications.Statuses["Completed"];
 
-            _mobileRestAPI.SendNotification(new MobileNotification
+            var result = _mobileRestAPI.SendNotification(new MobileNotification
             {
                 Title = "Ticket Closing",
                 Text = "Maor V. requested closing of ticket #169 to Stu S.",
-                Channel = "alert"
-            });    
+                Channel = "alert",
+                Icon = statusConfig.Icon,
+                Vibrate = statusConfig.Vibrate,
+                Sound = statusConfig.Sound
+            });
 
-            return Json(true);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
     }

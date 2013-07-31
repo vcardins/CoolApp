@@ -93,6 +93,22 @@ namespace CoolApp.Infrastructure.Configuration.Notifications
                 base["loginMethodUrl"] = value;
             }
         }
+        /// <summary>
+        /// Gets or sets the width.
+        /// </summary>
+        [ConfigurationProperty("pushNotificationUrl")]
+        public string PushNotificationUrl
+        {
+            get
+            {
+                return (string)base["pushNotificationUrl"];
+            }
+
+            set
+            {
+                base["pushNotificationUrl"] = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the width.
@@ -131,7 +147,7 @@ namespace CoolApp.Infrastructure.Configuration.Notifications
         /// <summary>
         /// Gets or sets the width.
         /// </summary>
-        [ConfigurationProperty("defaultSound")]
+        [ConfigurationProperty("defaultSound", DefaultValue = "default")]
         public string DefaultSound
         {
             get

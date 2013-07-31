@@ -51,6 +51,9 @@ namespace CoolApp.Core.Interfaces.Notifications
         [ConfigurationProperty("loginMethodUrl")]
         string LoginMethodUrl { get; set; }
 
+        [ConfigurationProperty("pushNotificationUrl")]
+        string PushNotificationUrl { get; set; }
+
         /// <summary>
         /// Gets or sets the auth User.
         /// </summary>

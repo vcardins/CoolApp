@@ -12,8 +12,8 @@ namespace CoolApp.Infrastructure.Configuration.Notifications
         /// <summary>
         /// Gets or sets the default provider.
         /// </summary>
-        [StringValidator(MinLength = 1)]
-        [ConfigurationProperty("defaultProvider", DefaultValue = "appcelerator")]
+        //[StringValidator(MinLength = 1)]
+        [ConfigurationProperty("defaultProvider")]
         public string DefaultProvider
         {
             get
@@ -36,6 +36,30 @@ namespace CoolApp.Infrastructure.Configuration.Notifications
             get
             {
                 return (NotificationProviderCollection)base["Provider"];
+            }
+        }
+
+        /// <summary>
+        /// Gets the Providers.
+        /// </summary>
+        [ConfigurationProperty("Status")]
+        public NotificationStatusCollection Statuses
+        {
+            get
+            {
+                return (NotificationStatusCollection)base["Status"];
+            }
+        }
+
+        /// <summary>
+        /// Gets the Providers.
+        /// </summary>
+        [ConfigurationProperty("Error")]
+        public NotificationErrorCollection Errors
+        {
+            get
+            {
+                return (NotificationErrorCollection)base["Error"];
             }
         }
     }

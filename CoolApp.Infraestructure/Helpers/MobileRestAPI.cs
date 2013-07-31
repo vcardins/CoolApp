@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Text;
+using System.Web.Script.Serialization;
 using CoolApp.Common.Extensions;
 using CoolApp.Core.Interfaces.External;
 using CoolApp.Core.Models.Mobile;
+using CoolApp.Infrastructure.Configuration;
 using CoolApp.Infrastructure.Configuration.Notifications;
-using CoolApp.Infrastructure.Notifications;
 using RestSharp;
 
 namespace CoolApp.Infrastructure.Helpers
 {
     public class MobileRestAPI : IMobileRestAPI
     {
-        private readonly NotificationProviderElement _config = NotificationManager.Default;
+        private readonly NotificationProviderElement _providerConfig;
+        private readonly NotificationErrorCollection _errorConfig;
 
-        private object Errors = new
-            {
-                ObjectParamNull = "",
-                MethodOnlyAllowedToGETAndDELETECalls = "",
-                MethodOnlyAllowedToPUTAndPOSTCalls = ""
-            };
+        public MobileRestAPI()
+        {
+            _providerConfig = AppConfig.Instance.Notifications.Providers[AppConfig.Instance.Notifications.DefaultProvider];
+            _errorConfig = AppConfig.Instance.Notifications.Errors;
+        }
 
         #region Private Methods
 
@@ -33,25 +34,25 @@ namespace CoolApp.Infrastructure.Helpers
         {
             if(bodyObject == null)
             {
-                return new { error = "The param dictionary cannot be null." };
+                return new { error = _errorConfig["MissingParameter"] };
             }
 
             if(method != Method.GET && method != Method.DELETE)
             {
-                return new { error = "The query string call allow only GET and DELETE calls." };
+                return new { error = _errorConfig["GetDeleteAllowedOnly"] };
             }            
 
-            var requestURL = new StringBuilder(_config.BaseURL);
+            var requestURL = new StringBuilder(_providerConfig.BaseURL);
 
-            requestURL.Append(string.Format("/{0}{1}", _config.Version, urlAction)).Append(bodyObject.GetQueryString());
+            requestURL.Append(string.Format("/{0}{1}", _providerConfig.Version, urlAction)).Append(bodyObject.GetQueryString());
 
-            var client = new RestClient(_config.BaseURL) { CookieContainer = new System.Net.CookieContainer() };
+            var client = new RestClient(_providerConfig.BaseURL) { CookieContainer = new System.Net.CookieContainer() };
 
             LoginMobileServer(client);
 
             var request = new RestRequest(method) { RequestFormat = DataFormat.Json };
 
-            request.AddUrlSegment("appkey", _config.AppKey);
+            request.AddUrlSegment("appkey", _providerConfig.AppKey);
 
             var result = client.Execute(request);
 
@@ -74,21 +75,21 @@ namespace CoolApp.Infrastructure.Helpers
         {
             if (bodyObject == null)
             {
-                return new { error = "The param dictionary cannot be null." };
+                return new { error = _errorConfig["MissingParameter"] };
             }
 
             if (method != Method.PUT && method != Method.POST)
             {
-                return new { error = "The form data call allow only PUT and POST calls." };
+                return new { error = _errorConfig["PutPostAllowedOnly"] };
             }
 
-            var client = new RestClient(_config.BaseURL) { CookieContainer = new System.Net.CookieContainer() };
+            var client = new RestClient(_providerConfig.BaseURL) { CookieContainer = new System.Net.CookieContainer() };
 
             LoginMobileServer(client);
 
-            var request = new RestRequest(String.Format("/{0}{1}",_config.Version, urlAction), method) { RequestFormat = DataFormat.Json };
+            var request = new RestRequest(String.Format("/{0}{1}",_providerConfig.Version, urlAction), method) { RequestFormat = DataFormat.Json };
 
-            request.AddUrlSegment("appkey", _config.AppKey);
+            request.AddUrlSegment("appkey", _providerConfig.AppKey);
 
             request.AddBody(bodyObject);
 
@@ -109,17 +110,17 @@ namespace CoolApp.Infrastructure.Helpers
         /// <returns></returns>
         private RestResponse LoginMobileServer(IRestClient client)
         {
-            var requestLogin = new RestRequest(_config.Version + _config.LoginMethodUrl, Method.POST)
+            var requestLogin = new RestRequest(_providerConfig.Version + _providerConfig.LoginMethodUrl, Method.POST)
             {
                 RequestFormat = DataFormat.Json,
             };
 
-            requestLogin.AddUrlSegment("appkey", _config.AppKey);
+            requestLogin.AddUrlSegment("appkey", _providerConfig.AppKey);
 
             requestLogin.AddBody(new
             {
-                login = _config.AuthUser,
-                password = _config.AuthPassword
+                login = _providerConfig.AuthUser,
+                password = _providerConfig.AuthPassword
             });
 
             return client.Execute(requestLogin) as RestResponse;
@@ -153,24 +154,28 @@ namespace CoolApp.Infrastructure.Helpers
 
         #region Public Methods
 
-        public void SendNotification(MobileNotification mobileNotification)
+        public object SendNotification(MobileNotification notification)
         {
-            const string notificationURLAction = "/push_notification/notify.json?key={appkey}";
-            var notification = new
+            var o = new
                 {
-                    channel = mobileNotification.Channel,
-                    to_ids = mobileNotification.UserIds,
+                    channel = notification.Channel,
+                    to_ids = notification.UserIds,
                     payload = new {
-                        title = mobileNotification.Title,
-                        badge = mobileNotification.Badge,
-                        alert = mobileNotification.Text,
-                        sound = (String.IsNullOrEmpty(mobileNotification.Sound)?"default":mobileNotification.Sound),
-                        vibrate = mobileNotification.Vibrate,
-                        icon = mobileNotification.Icon
+                        title = notification.Title,
+                        badge = notification.Badge,
+                        alert = notification.Text,
+                        sound = notification.Sound ?? _providerConfig.DefaultSound,
+                        vibrate = notification.Vibrate,
+                        icon = notification.Icon
                     },
                 };
 
-            MobileRestCall(notificationURLAction, notification, "POST");
+            var result = MobileRestCall(_providerConfig.PushNotificationUrl, o, "POST");
+
+            var serializer1 = new JavaScriptSerializer();
+            var json = serializer1.Deserialize<object>(result.ToString());
+
+            return json;
         }
 
         #endregion
