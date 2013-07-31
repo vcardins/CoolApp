@@ -1,5 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
+using CoolApp.Common.Extensions;
 using CoolApp.Core.Interfaces.External;
+using CoolApp.Core.Models.Mobile;
 using CoolApp.Infrastructure.Configuration.Notifications;
 using CoolApp.Infrastructure.Notifications;
 using RestSharp;
@@ -8,14 +11,7 @@ namespace CoolApp.Infrastructure.Helpers
 {
     public class MobileRestAPI : IMobileRestAPI
     {
-        private NotificationProviderElement _config = NotificationManager.Default;
-
-        const string AppKey = "aB5BBr6oKB5mJYUKjqskLeTQjAWxKbK1";
-        const string BaseURL = "https://api.cloud.appcelerator.com";
-        private const string Version = "/v1";
-        private const string User = "";
-        private const string Pass = "";
-        private const string Sound = "";
+        private readonly NotificationProviderElement _config = NotificationManager.Default;
 
         private object Errors = new
             {
@@ -24,10 +20,7 @@ namespace CoolApp.Infrastructure.Helpers
                 MethodOnlyAllowedToPUTAndPOSTCalls = ""
             };
 
-        private object URLs = new
-            {
-                LoginMethodURL = ""
-            };
+        #region Private Methods
 
         /// <summary>
         /// Queries the string call. (Only HTTPS calls)
@@ -38,7 +31,6 @@ namespace CoolApp.Infrastructure.Helpers
         /// <returns></returns>
         private object QueryStringCall(string urlAction, object bodyObject, Method method)
         {
-            
             if(bodyObject == null)
             {
                 return new { error = "The param dictionary cannot be null." };
@@ -49,18 +41,17 @@ namespace CoolApp.Infrastructure.Helpers
                 return new { error = "The query string call allow only GET and DELETE calls." };
             }            
 
-            var requestURL = new StringBuilder(urlAction);
+            var requestURL = new StringBuilder(_config.BaseURL);
 
-            requestURL.Append("?key=").Append(AppKey);
+            requestURL.Append(string.Format("/{0}{1}", _config.Version, urlAction)).Append(bodyObject.GetQueryString());
 
-            //foreach (var param in bodyObject)
-            //{
-            //    requestURL.Append("&").Append(param.Key).Append("=").Append(param.Value);
-            //}
+            var client = new RestClient(_config.BaseURL) { CookieContainer = new System.Net.CookieContainer() };
 
-            var client = new RestClient(requestURL.ToString());
+            LoginMobileServer(client);
 
             var request = new RestRequest(method) { RequestFormat = DataFormat.Json };
+
+            request.AddUrlSegment("appkey", _config.AppKey);
 
             var result = client.Execute(request);
 
@@ -72,6 +63,13 @@ namespace CoolApp.Infrastructure.Helpers
             return result.Content;
         }
 
+        /// <summary>
+        /// Perform a forms data call.
+        /// </summary>
+        /// <param name="urlAction">The URL action.</param>
+        /// <param name="bodyObject">The body object.</param>
+        /// <param name="method">The method. (Only PUT and POST methods)</param>
+        /// <returns></returns>
         private object FormDataCall(string urlAction, object bodyObject, Method method)
         {
             if (bodyObject == null)
@@ -84,28 +82,13 @@ namespace CoolApp.Infrastructure.Helpers
                 return new { error = "The form data call allow only PUT and POST calls." };
             }
 
-            var client = new RestClient(BaseURL);
+            var client = new RestClient(_config.BaseURL) { CookieContainer = new System.Net.CookieContainer() };
 
-            client.CookieContainer = new System.Net.CookieContainer();
+            LoginMobileServer(client);
 
-            var requestLogin = new RestRequest("/v1/users/login.json?key={appkey}", Method.POST)
-            {
-                RequestFormat = DataFormat.Json,
-            };
+            var request = new RestRequest(String.Format("/{0}{1}",_config.Version, urlAction), method) { RequestFormat = DataFormat.Json };
 
-            requestLogin.AddUrlSegment("appkey", AppKey);
-
-            requestLogin.AddBody(new
-            {
-                login = "dsmoreira",
-                password = "75915346"
-            });
-
-            var response = client.Execute(requestLogin);
-
-            var request = new RestRequest(urlAction, method) { RequestFormat = DataFormat.Json };
-
-            request.AddUrlSegment("appkey", AppKey);
+            request.AddUrlSegment("appkey", _config.AppKey);
 
             request.AddBody(bodyObject);
 
@@ -119,59 +102,77 @@ namespace CoolApp.Infrastructure.Helpers
             return result.Content;
         }
 
-        private void LoginMobileServer()
+        /// <summary>
+        /// Logins on the mobile server.
+        /// </summary>
+        /// <param name="client">The client of request.</param>
+        /// <returns></returns>
+        private RestResponse LoginMobileServer(IRestClient client)
         {
-            var client = new RestClient(" https://api.cloud.appcelerator.com");
-            var request = new RestRequest("/v1/users/login.json?key={appkey}", Method.POST)
+            var requestLogin = new RestRequest(_config.Version + _config.LoginMethodUrl, Method.POST)
             {
                 RequestFormat = DataFormat.Json,
             };
-            request.AddUrlSegment("appkey", "mykey");
-            request.AddBody(new
+
+            requestLogin.AddUrlSegment("appkey", _config.AppKey);
+
+            requestLogin.AddBody(new
             {
-                login = "user",
-                password = "password"
+                login = _config.AuthUser,
+                password = _config.AuthPassword
             });
-            var response = client.Execute(request); //makes the request but doesn't get a response
-            var content = response.Content;
+
+            return client.Execute(requestLogin) as RestResponse;
         }
 
-        public object MobileRestCall(string urlAction, object bodyObject, string method)
+        /// <summary>
+        /// Mobiles the rest call.
+        /// </summary>
+        /// <param name="urlAction">The URL action.</param>
+        /// <param name="bodyObject">The body object.</param>
+        /// <param name="method">The method.</param>
+        /// <returns></returns>
+        private object MobileRestCall(string urlAction, object bodyObject, string method)
         {
             switch (method.ToUpper())
             {
-                    case "POST":
+                case "POST":
                     return FormDataCall(urlAction, bodyObject, Method.POST);
-                        break;
-                    case "PUT":
-                        return FormDataCall(urlAction, bodyObject, Method.PUT);
-                        break;
-                    case "GET":
-                        return QueryStringCall(urlAction, bodyObject, Method.GET);
-                        break;
-                    case "DELETE":
-                        return QueryStringCall(urlAction, bodyObject, Method.DELETE);
-                        break;
-                    default:
-                        return FormDataCall(urlAction, bodyObject, Method.POST);
-                        break;
+                case "PUT":
+                    return FormDataCall(urlAction, bodyObject, Method.PUT);
+                case "GET":
+                    return QueryStringCall(urlAction, bodyObject, Method.GET);
+                case "DELETE":
+                    return QueryStringCall(urlAction, bodyObject, Method.DELETE);
+                default:
+                    return FormDataCall(urlAction, bodyObject, Method.POST);
             }
         }
 
-        public void SendNotification(string title, string text, string channel, string clientId, string devideToken)
+        #endregion
+
+        #region Public Methods
+
+        public void SendNotification(MobileNotification mobileNotification)
         {
-            const string notificationURLAction = "/v1/push_notification/notify.json?key={appkey}";
+            const string notificationURLAction = "/push_notification/notify.json?key={appkey}";
             var notification = new
                 {
-                    channel = channel,
+                    channel = mobileNotification.Channel,
+                    to_ids = mobileNotification.UserIds,
                     payload = new {
-                        title = title,
-                        alert = text,
-                        sound = "default"
-                    }
+                        title = mobileNotification.Title,
+                        badge = mobileNotification.Badge,
+                        alert = mobileNotification.Text,
+                        sound = (String.IsNullOrEmpty(mobileNotification.Sound)?"default":mobileNotification.Sound),
+                        vibrate = mobileNotification.Vibrate,
+                        icon = mobileNotification.Icon
+                    },
                 };
 
             MobileRestCall(notificationURLAction, notification, "POST");
         }
+
+        #endregion
     }
 }

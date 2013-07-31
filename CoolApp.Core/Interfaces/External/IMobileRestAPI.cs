@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using CoolApp.Core.Models.Mobile;
 
 namespace CoolApp.Core.Interfaces.External
 {
     public interface IMobileRestAPI
     {
-        object MobileRestCall(string urlAction, object bodyObject, string method);
-        void SendNotification(string title, string text, string channel, string clientId, string devideToken);
+        void SendNotification(MobileNotification mobileNotification);
     }
 }

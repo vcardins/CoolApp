@@ -1,24 +1,27 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CoolApp.Core.Interfaces.External;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CoolApp.Core.Models.Mobile;
+using NUnit.Framework;
 
 namespace CoolApp.Test.Infrastructure.Helpers
 {
-    [TestClass]
+    [TestFixture]
     public class MobileRestAPITest
     {
         private IMobileRestAPI _mobileRestAPI;
 
+        [TestFixtureSetUp]
         public void TestSetup()
         {
             _mobileRestAPI = DependencyResolver.Current.GetService<IMobileRestAPI>();
         }        
 
-        [TestMethod]
+        [Test]
         public void FormDataPostCall()
         {
-            _mobileRestAPI.SendNotification("Ticket Closing", "Maor V. requested closing of ticket #169 to Stu S.", "alert", "", "");       
+            _mobileRestAPI.SendNotification(new MobileNotification{ Title = "Ticket Closing",
+                                                                    Text =  "Maor V. requested closing of ticket #169 to Stu S.",
+                                                                    Channel = "alert"});       
         }
     }
 }
