@@ -21,8 +21,6 @@ using CoolApp.Infrastructure.Security;
 using CoolApp.Core.Interfaces.Data;
 using CoolApp.Core.Interfaces.Service;
 using CoolApp.Core.Services;
-using CoolApp.DependencyResolution;
-using CoolApp.Infrastructure.Data;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -103,7 +101,7 @@ namespace CoolApp.DependencyResolution
             kernel.Bind<IFriendshipRepository>().To<FriendshipRepository>().InRequestScope();
             kernel.Bind<IFriendshipService>().To<FriendshipService>().InRequestScope();
 
-            kernel.Bind<IMobileRestAPI>().To<MobileRestAPI>().InRequestScope();
+            kernel.Bind<IMobileRestAPI>().To<MobileRestAPI>();
         }
 
         public class NinjectControllerFactory : DefaultControllerFactory
