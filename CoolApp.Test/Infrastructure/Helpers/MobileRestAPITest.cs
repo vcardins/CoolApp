@@ -2,7 +2,6 @@
 using CoolApp.Core.Interfaces.External;
 using CoolApp.Core.Models.Mobile;
 using NUnit.Framework;
-using CoolApp.Infrastructure.Configuration;
 
 namespace CoolApp.Test.Infrastructure.Helpers
 {
@@ -14,8 +13,15 @@ namespace CoolApp.Test.Infrastructure.Helpers
         [TestFixtureSetUp]
         public void TestSetup()
         {
+            DependencyResolution.AppStartup.Start();
             _mobileRestAPI = DependencyResolver.Current.GetService<IMobileRestAPI>();
-        }        
+        }
+
+        [TestFixtureTearDown]
+        public void TestTearDown()
+        {
+            DependencyResolution.AppStartup.Stop();
+        }
 
         [Test]
         public void FormDataPostCall()
